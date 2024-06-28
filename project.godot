@@ -1,0 +1,27 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Godot Game State Plugin"
+config/features=PackedStringArray("4.1", "Mobile")
+config/icon="res://icon.svg"
+
+[autoload]
+
+GameStateService="*res://addons/game_state_helper/game_state_service.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/game_state_helper/plugin.cfg")
+
+[rendering]
+
+renderer/rendering_method="mobile"

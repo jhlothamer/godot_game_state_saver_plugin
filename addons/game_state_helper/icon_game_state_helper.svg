@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   height="16"
+   viewBox="0 0 16 16"
+   width="16"
+   version="1.1"
+   id="svg10"
+   sodipodi:docname="icon_game_state_helper.svg"
+   inkscape:version="1.1.1 (eb90963e84, 2021-10-02)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs14" />
+  <sodipodi:namedview
+     id="namedview12"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="44.375"
+     inkscape:cx="8"
+     inkscape:cy="8"
+     inkscape:window-width="1840"
+     inkscape:window-height="1043"
+     inkscape:window-x="80"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg10" />
+  <g
+     id="g36450-0-3"
+     transform="matrix(0.94488068,0,0,0.94488068,-485.99936,-27.999952)">
+    <path
+       d="m 527.65477,29.633333 c -0.67008,0 -1.2095,0.539428 -1.2095,1.209507 v 2.419061 h 4.83807 V 30.84284 c 0,-0.670079 -0.53943,-1.209507 -1.20951,-1.209507 z m -1.2095,4.838076 v 8.466689 l 2.41901,3.628568 2.41906,-3.628568 v -8.466689 z m 1.2095,1.209553 h 1.20951 v 6.047583 h -1.20951 z"
+       fill="#e0e0e0"
+       id="path31859-9-9"
+       style="stroke-width:0.264583" />
+    <path
+       id="rect31883-6-0"
+       style="fill:none;stroke:#e6e6e6;stroke-width:1.05833;stroke-linejoin:round;paint-order:fill markers stroke"
+       d="m 518.93,34.662838 3.3575,0.03663 c 0,1.444156 -1.16262,2.871364 -2.60678,2.871364 h -2.19479 c -1.44416,0 -2.60678,-1.162625 -2.60678,-2.606781 v -2.194775 c 0,-1.444156 1.16262,-2.606781 2.60678,-2.606781 h 2.19479 c 1.44416,0 2.60678,1.162625 2.60678,2.606781"
+       sodipodi:nodetypes="ccssssssc" />
+    <path
+       id="rect33439-3-8"
+       style="fill:none;stroke:#e6e6e6;stroke-width:1.05833;stroke-linejoin:round;paint-order:fill markers stroke"
+       d="m 514.87915,44.489054 c 0,1.444157 1.16262,1.548448 2.60678,1.548448 h 2.19479 c 1.44416,0 2.60678,-1.162624 2.60678,-2.606781 v -1.097387 h -7.40835 v -1.097388 c 0,-1.444156 1.16262,-2.60678 2.60678,-2.60678 h 2.19479 c 1.44416,0 2.60678,0.104291 2.60678,1.548447"
+       sodipodi:nodetypes="csssccsssc" />
+  </g>
+</svg>
