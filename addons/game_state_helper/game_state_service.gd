@@ -46,11 +46,6 @@ func _ready():
 	var current_scene = get_tree().current_scene
 	if current_scene != null:
 		_on_scene_tree_node_added(current_scene)
-	
-	var transition_mgr = get_tree().root.get_node_or_null("TransitionMgr")
-	if transition_mgr == null:
-		return
-	transition_mgr.connect("scene_transitioning", on_scene_transitioning)
 
 
 ## Creates a json file with the raw game state dictionary data.  This is used for debugging.

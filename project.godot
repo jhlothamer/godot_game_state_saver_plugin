@@ -22,6 +22,7 @@ TransitionMgr="*res://addons/transition_mgr/transition_mgr.tscn"
 InventoryMgr="*res://utils/inventory_mgr.tscn"
 GameInit="*res://utils/game_init.gd"
 FullScreenMgr="*res://utils/full_screen_mgr.tscn"
+TransitionMgrGameStateServiceBridge="*res://utils/transition_mgr_game_state_service_bridge.gd"
 
 [display]
 
