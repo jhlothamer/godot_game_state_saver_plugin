@@ -1,0 +1,15 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://0h6us4pe5qfi"]
+
+[ext_resource type="FontFile" uid="uid://dej7qb7q5bxg5" path="res://assets/fonts/CooperHewitt-Medium.otf" id="1_j7al1"]
+
+[resource]
+default_font_size = 16
+Button/font_sizes/font_size = 48
+Button/fonts/font = ExtResource("1_j7al1")
+Label/font_sizes/font_size = 40
+Label/fonts/font = ExtResource("1_j7al1")
+RichTextLabel/font_sizes/normal_font_size = 24
+dialog_button/base_type = &"Button"
+dialog_button/font_sizes/font_size = 16
+title/base_type = &"Label"
+title/font_sizes/font_size = 100

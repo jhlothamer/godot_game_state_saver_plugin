@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxcl6bi7cx6sx"]
+
+[ext_resource type="Texture2D" uid="uid://wyygvehd4vp3" path="res://assets/images/environment/key.png" id="1"]
+[ext_resource type="Script" path="res://scenes/ui/inventory_slot.gd" id="2"]
+
+[node name="InventorySlot" type="CenterContainer"]
+custom_minimum_size = Vector2(40, 40)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1")

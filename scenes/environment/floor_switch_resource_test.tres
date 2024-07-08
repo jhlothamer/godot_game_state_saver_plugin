@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="FloorSwitchResource" load_steps=2 format=3 uid="uid://r53qe8wlfx8"]
+
+[ext_resource type="Script" path="res://scenes/environment/floor_switch_resource.gd" id="1_rr0vg"]
+
+[resource]
+script = ExtResource("1_rr0vg")
+triggered = false

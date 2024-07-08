@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://dkxarq4817du8"]
+
+[ext_resource type="Script" path="res://scenes/components/interaction/interactable_area_2d.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://wyygvehd4vp3" path="res://assets/images/environment/key.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bjhui0bkvmdd5" path="res://assets/images/environment/key_interaction_indicator.png" id="3"]
+[ext_resource type="Script" path="res://scenes/environment/key.gd" id="4"]
+[ext_resource type="Script" path="res://addons/game_state_helper/game_state_helper.gd" id="5"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(20, 40)
+
+[node name="Key" type="Sprite2D"]
+texture = ExtResource("2")
+script = ExtResource("4")
+
+[node name="key_interaction_indicator" type="Sprite2D" parent="."]
+visible = false
+show_behind_parent = true
+texture = ExtResource("3")
+
+[node name="InteractableArea2D" type="Area2D" parent="."]
+visible = false
+script = ExtResource("1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea2D"]
+shape = SubResource("1")
+
+[node name="GameStateHelper" type="Node" parent="."]
+script = ExtResource("5")
+save_properties = Array[String](["global_position"])
+
+[connection signal="InteractionIndicatorStateChanged" from="InteractableArea2D" to="." method="_on_InteractableArea2D_InteractionIndicatorStateChanged"]
+[connection signal="InteractionStarted" from="InteractableArea2D" to="." method="_on_InteractableArea2D_InteractionStarted"]

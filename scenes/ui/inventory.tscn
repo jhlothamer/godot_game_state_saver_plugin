@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/ui/inventory.gd" type="Script" id=1]
+
+[node name="Inventory" type="HBoxContainer"]
+offset_bottom = 40.0
+grow_horizontal = 0
+custom_minimum_size = Vector2( 0, 40 )
+alignment = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}

@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://ymv7pmgpa7gq"]
+
+[ext_resource type="PackedScene" uid="uid://oph56k0gk8qm" path="res://scenes/rooms/room.tscn" id="1"]
+[ext_resource type="FontFile" uid="uid://dej7qb7q5bxg5" path="res://assets/fonts/CooperHewitt-Medium.otf" id="2"]
+[ext_resource type="Theme" uid="uid://0h6us4pe5qfi" path="res://assets/themes/global.tres" id="2_ttsb1"]
+
+[sub_resource type="FontFile" id="1"]
+fallbacks = Array[Font]([ExtResource("2")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/40/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/100/0 = Vector2(0, 0)
+cache/0/40/0/ascent = 0.0
+cache/0/40/0/descent = 0.0
+cache/0/40/0/underline_position = 0.0
+cache/0/40/0/underline_thickness = 0.0
+cache/0/40/0/scale = 1.0
+cache/0/40/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/40/0/kerning_overrides/40/0 = Vector2(0, 0)
+cache/0/40/0/kerning_overrides/100/0 = Vector2(0, 0)
+cache/0/100/0/ascent = 0.0
+cache/0/100/0/descent = 0.0
+cache/0/100/0/underline_position = 0.0
+cache/0/100/0/underline_thickness = 0.0
+cache/0/100/0/scale = 1.0
+cache/0/100/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/100/0/kerning_overrides/40/0 = Vector2(0, 0)
+cache/0/100/0/kerning_overrides/100/0 = Vector2(0, 0)
+
+[node name="RoomNorth" instance=ExtResource("1")]
+
+[node name="NorthRoomExit" parent="." index="2"]
+visible = false
+collision_layer = 7
+collision_mask = 7
+enabled = false
+
+[node name="SouthRoomExit" parent="." index="3"]
+destination_level_scene = "res://scenes/rooms/room_main.tscn"
+
+[node name="EastRoomExit" parent="." index="4"]
+visible = false
+collision_layer = 7
+collision_mask = 7
+enabled = false
+
+[node name="WestRoomExit" parent="." index="5"]
+visible = false
+collision_layer = 7
+collision_mask = 7
+enabled = false
+
+[node name="Label" type="Label" parent="." index="6"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 337.5
+offset_top = 248.5
+offset_right = 686.5
+offset_bottom = 351.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_ttsb1")
+theme_type_variation = &"title"
+theme_override_colors/font_color = Color(0.662745, 0.52549, 0.360784, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 8
+theme_override_fonts/font = SubResource("1")
+text = "The End"
+
+[node name="Info" parent="Node2D" index="0"]
+position = Vector2(358.065, 394)
+bb_code_info_msg = "Congrats!  Now you see that persisting game state across scenes as demonstrated here opens up a lot of possibilities for your games."

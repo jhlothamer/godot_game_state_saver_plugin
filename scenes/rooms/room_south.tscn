@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://cbrvtdqipwsao"]
+
+[ext_resource type="PackedScene" uid="uid://oph56k0gk8qm" path="res://scenes/rooms/room.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://dkxarq4817du8" path="res://scenes/environment/key.tscn" id="2"]
+[ext_resource type="Script" path="res://scenes/rooms/room_south.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://dxia3pe7dsfqk" path="res://scenes/environment/floor_switch.tscn" id="4"]
+[ext_resource type="Texture2D" uid="uid://ck1qchgil1p2w" path="res://assets/images/environment/switch_left.png" id="5_hewbp"]
+[ext_resource type="Texture2D" uid="uid://5vinev1klkiy" path="res://assets/images/environment/switch_right.png" id="6_xf13r"]
+
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_hewbp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_xf13r")
+}],
+"loop": true,
+"name": &"switched",
+"speed": 5.0
+}]
+
+[node name="RoomSouth" instance=ExtResource("1")]
+script = ExtResource("3")
+
+[node name="NorthRoomExit" parent="." index="2"]
+destination_level_scene = "res://scenes/rooms/room_main.tscn"
+
+[node name="SouthRoomExit" parent="." index="3"]
+visible = false
+collision_layer = 7
+collision_mask = 7
+enabled = false
+
+[node name="room_exit" parent="SouthRoomExit" index="0"]
+visible = false
+
+[node name="EastRoomExit" parent="." index="4"]
+visible = false
+collision_layer = 7
+collision_mask = 7
+enabled = false
+
+[node name="room_exit" parent="EastRoomExit" index="0"]
+visible = false
+
+[node name="WestRoomExit" parent="." index="5"]
+visible = false
+collision_layer = 7
+collision_mask = 7
+enabled = false
+
+[node name="room_exit" parent="WestRoomExit" index="0"]
+visible = false
+
+[node name="Info" parent="Node2D" index="0"]
+position = Vector2(657.655, 127.5)
+bb_code_info_msg = "This room demonstrates picking up an item and putting into the inventory.  The items removal from the room is persisted as well as the items in the inventory.  The state of the floor switch is also persisted but itself has no affect on other scenes."
+
+[node name="Key" parent="Node2D" index="2" instance=ExtResource("2")]
+position = Vector2(317.121, -100)
+
+[node name="ReleaseKeyFloorSwitch" parent="Node2D" index="3" instance=ExtResource("4")]
+position = Vector2(747.51, 365)
+sprite_frames = SubResource("1")
+trigger_id = "key_release"
+
+[node name="KeyEndPosition" type="Marker2D" parent="." index="8"]
+position = Vector2(317.121, 340)
+
+[editable path="NorthRoomExit"]
+[editable path="SouthRoomExit"]
+[editable path="EastRoomExit"]
+[editable path="WestRoomExit"]

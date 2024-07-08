@@ -11,16 +11,53 @@ config_version=5
 [application]
 
 config/name="Godot Game State Plugin"
+run/main_scene="res://scenes/ui/title.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameStateService="*res://addons/game_state_helper/game_state_service.gd"
+TransitionMgr="*res://addons/transition_mgr/transition_mgr.tscn"
+InventoryMgr="*res://utils/inventory_mgr.tscn"
+GameInit="*res://utils/game_init.gd"
+FullScreenMgr="*res://utils/full_screen_mgr.tscn"
+
+[display]
+
+window/size/viewport_width=1024
+window/size/viewport_height=600
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/game_state_helper/plugin.cfg")
+enabled=PackedStringArray("res://addons/game_state_helper/plugin.cfg", "res://addons/transition_mgr/plugin.cfg")
+
+[input]
+
+interact={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194309,"key_label":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"echo":false,"script":null)
+]
+}
+pause={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+autosave_on={
+"deadzone": 0.5,
+"events": []
+}
+autosave_off={
+"deadzone": 0.5,
+"events": []
+}
+full_screen_toggle={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194342,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
 
 [rendering]
 

@@ -1,0 +1,141 @@
+[gd_scene load_steps=9 format=3 uid="uid://bswgagaqfkxrf"]
+
+[ext_resource type="Texture2D" uid="uid://bn8508130mlq4" path="res://assets/images/white_box_32x32.png" id="1"]
+[ext_resource type="Theme" uid="uid://0h6us4pe5qfi" path="res://assets/themes/global.tres" id="1_xkewf"]
+[ext_resource type="Script" path="res://scenes/ui/pause_dialog.gd" id="2"]
+[ext_resource type="FontFile" uid="uid://dej7qb7q5bxg5" path="res://assets/fonts/CooperHewitt-Medium.otf" id="3"]
+[ext_resource type="PackedScene" uid="uid://fhkyjillo30b" path="res://scenes/ui/save_game_dlg.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://dp8vtge0lck8p" path="res://scenes/ui/load_game_dlg.tscn" id="5"]
+
+[sub_resource type="FontFile" id="1"]
+fallbacks = Array[Font]([ExtResource("3")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/100/0 = Vector2(0, 0)
+cache/0/100/0/ascent = 0.0
+cache/0/100/0/descent = 0.0
+cache/0/100/0/underline_position = 0.0
+cache/0/100/0/underline_thickness = 0.0
+cache/0/100/0/scale = 1.0
+cache/0/100/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/100/0/kerning_overrides/100/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("3")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
+cache/0/48/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/48/0 = Vector2(0, 0)
+
+[node name="PauseDialog" type="Control"]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xkewf")
+script = ExtResource("2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0.423529)
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("1")
+stretch_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.0
+offset_top = -171.5
+offset_right = 135.0
+offset_bottom = 171.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"title"
+theme_override_colors/font_color = Color(1, 0, 0.607843, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = SubResource("1")
+text = "Pause"
+
+[node name="ResumeBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.921569, 0, 1, 1)
+theme_override_colors/font_hover_color = Color(0.992157, 1, 0, 1)
+theme_override_fonts/font = SubResource("2")
+text = "Resume"
+flat = true
+
+[node name="SaveBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.921569, 0, 1, 1)
+theme_override_colors/font_hover_color = Color(0.992157, 1, 0, 1)
+theme_override_fonts/font = SubResource("2")
+text = "Save"
+flat = true
+
+[node name="LoadBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.921569, 0, 1, 1)
+theme_override_colors/font_hover_color = Color(0.992157, 1, 0, 1)
+theme_override_fonts/font = SubResource("2")
+text = "Load"
+flat = true
+
+[node name="MainMenuBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.921569, 0, 1, 1)
+theme_override_colors/font_hover_color = Color(0.992157, 1, 0, 1)
+theme_override_fonts/font = SubResource("2")
+text = "Main Menu"
+flat = true
+
+[node name="SaveGame" parent="." instance=ExtResource("4")]
+visible = false
+
+[node name="LoadGameDlg" parent="." instance=ExtResource("5")]
+
+[connection signal="pressed" from="VBoxContainer/ResumeBtn" to="." method="_on_ResumeBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/SaveBtn" to="." method="_on_SaveBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadBtn" to="." method="_on_LoadBtn_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenuBtn" to="." method="_on_MainMenuBtn_pressed"]

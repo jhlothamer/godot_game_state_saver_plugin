@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/rooms/room.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/images/environment/switch_left.png" type="Texture2D" id=2]
+[ext_resource path="res://assets/images/environment/switch_right.png" type="Texture2D" id=3]
+[ext_resource path="res://scenes/environment/floor_switch.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/environment/low_wall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/rooms/room_east.gd" type="Script" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "switched",
+"speed": 5.0
+} ]
+
+[node name="RoomEast" instance=ExtResource( 1 )]
+script = ExtResource( 6 )
+
+[node name="NorthRoomExit" parent="." index="2"]
+visible = false
+collision_layer = 7
+collision_mask = 7
+enabled = false
+
+[node name="room_exit" parent="NorthRoomExit" index="0"]
+visible = false
+
+[node name="SouthRoomExit" parent="." index="3"]
+visible = false
+collision_layer = 7
+collision_mask = 7
+enabled = false
+
+[node name="room_exit" parent="SouthRoomExit" index="0"]
+visible = false
+
+[node name="EastRoomExit" parent="." index="4"]
+visible = false
+collision_layer = 7
+collision_mask = 7
+enabled = false
+
+[node name="room_exit" parent="EastRoomExit" index="0"]
+visible = false
+
+[node name="WestRoomExit" parent="." index="5"]
+destination_level_scene = "res://scenes/rooms/room_main.tscn"
+
+[node name="Info" parent="Node2D" index="0"]
+bb_code_info_msg = "This room shows that an instanced child scene (the barrier) will stay removed.  This is done by the helper node noting the fact that the child scene was freed.  Also, toggling the switch on the far side affects something in the main room."
+
+[node name="Player" parent="Node2D" index="1"]
+position = Vector2( 255.5, 300.093 )
+
+[node name="FloorSwitch" parent="Node2D" index="2" instance=ExtResource( 4 )]
+position = Vector2( 820.543, 398 )
+frames = SubResource( 1 )
+trigger_id = "east_trigger"
+
+[node name="RemoveBarrierFloorSwitch" parent="Node2D" index="3" instance=ExtResource( 4 )]
+position = Vector2( 275.642, 416.5 )
+trigger_id = "remove_barrier"
+
+[node name="LowWall" parent="." index="8" instance=ExtResource( 5 )]
+position = Vector2( 512, 300.185 )
+
+[connection signal="switch_state_changed" from="Node2D/RemoveBarrierFloorSwitch" to="." method="_on_RemoveBarrierFloorSwitch_switch_state_changed"]
+
+[editable path="NorthRoomExit"]
+[editable path="SouthRoomExit"]
+[editable path="EastRoomExit"]
+[editable path="WestRoomExit"]

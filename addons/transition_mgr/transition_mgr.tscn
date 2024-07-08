@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbtucwcrm3ai2"]
+
+[ext_resource type="Script" path="res://addons/transition_mgr/transition_mgr.gd" id="1_3w3bw"]
+
+[sub_resource type="Animation" id="Animation_ywbuj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fkof3"]
+resource_name = "fadeIn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w7d3q"]
+resource_name = "fadeOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w12t0"]
+_data = {
+"RESET": SubResource("Animation_ywbuj"),
+"fadeIn": SubResource("Animation_fkof3"),
+"fadeOut": SubResource("Animation_w7d3q")
+}
+
+[node name="transition_mgr" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_3w3bw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(3840, 2160)
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[node name="fadeAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w12t0")
+}
+
+[connection signal="animation_finished" from="fadeAnimation" to="." method="_on_fade_animation_animation_finished"]

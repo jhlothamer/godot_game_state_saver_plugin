@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://rpuqdj417osj"]
+
+[ext_resource type="Texture2D" uid="uid://faenicdw51mr" path="res://assets/images/environment/info.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://k6qn1aowbrhe" path="res://assets/images/environment/info_interact_indicator.png" id="2"]
+[ext_resource type="Script" path="res://scenes/components/interaction/interactable_area_2d.gd" id="3"]
+[ext_resource type="Script" path="res://scenes/environment/info.gd" id="4"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(29.0756, 48.589)
+
+[node name="Info" type="Sprite2D"]
+texture = ExtResource("1")
+script = ExtResource("4")
+
+[node name="info_interact_indicator" type="Sprite2D" parent="."]
+show_behind_parent = true
+texture = ExtResource("2")
+
+[node name="InteractableArea2D" type="Area2D" parent="."]
+script = ExtResource("3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea2D"]
+shape = SubResource("1")
+
+[connection signal="InteractionIndicatorStateChanged" from="InteractableArea2D" to="." method="_on_InteractableArea2D_InteractionIndicatorStateChanged"]
+[connection signal="InteractionStarted" from="InteractableArea2D" to="." method="_on_InteractableArea2D_InteractionStarted"]

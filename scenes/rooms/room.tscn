@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=3 uid="uid://oph56k0gk8qm"]
+
+[ext_resource type="Texture2D" uid="uid://cmd1u0fgo4rg3" path="res://assets/images/environment/room_walls.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dqthnm084c7hg" path="res://assets/images/environment/room_floor.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://bqhtleeec214i" path="res://scenes/rooms/room_exit.tscn" id="3"]
+[ext_resource type="Script" path="res://scenes/rooms/room.gd" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://rpuqdj417osj" path="res://scenes/environment/info.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://bdql8d4bdoouq" path="res://scenes/ui/hud.tscn" id="7"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(340, 10)
+
+[sub_resource type="RectangleShape2D" id="2"]
+size = Vector2(10, 120)
+
+[node name="Room" type="Node2D"]
+script = ExtResource("4")
+
+[node name="room_floor" type="Sprite2D" parent="."]
+texture = ExtResource("2")
+centered = false
+
+[node name="room_walls" type="Sprite2D" parent="."]
+texture = ExtResource("1")
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="room_walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="room_walls/StaticBody2D"]
+position = Vector2(275.642, 118)
+shape = SubResource("1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="room_walls/StaticBody2D"]
+position = Vector2(747.51, 118)
+shape = SubResource("1")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="room_walls/StaticBody2D"]
+position = Vector2(273.642, 482.411)
+shape = SubResource("1")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="room_walls/StaticBody2D"]
+position = Vector2(747.51, 482.411)
+shape = SubResource("1")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="room_walls/StaticBody2D"]
+position = Vector2(116.603, 188.261)
+shape = SubResource("2")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="room_walls/StaticBody2D"]
+position = Vector2(116.603, 410.753)
+shape = SubResource("2")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="room_walls/StaticBody2D"]
+position = Vector2(907.07, 188.261)
+shape = SubResource("2")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="room_walls/StaticBody2D"]
+position = Vector2(907.07, 410.753)
+shape = SubResource("2")
+
+[node name="NorthRoomExit" parent="." instance=ExtResource("3")]
+position = Vector2(512, 128)
+destination_level_scene = "res://scenes/rooms/room.tscn"
+
+[node name="SouthRoomExit" parent="." instance=ExtResource("3")]
+position = Vector2(512, 472)
+rotation = 3.14159
+destination_level_scene = "res://scenes/rooms/room.tscn"
+
+[node name="EastRoomExit" parent="." instance=ExtResource("3")]
+position = Vector2(896, 300)
+rotation = 1.5708
+destination_level_scene = "res://scenes/rooms/room.tscn"
+
+[node name="WestRoomExit" parent="." instance=ExtResource("3")]
+position = Vector2(128, 300)
+rotation = -1.5708
+destination_level_scene = "res://scenes/rooms/room.tscn"
+
+[node name="Node2D" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Info" parent="Node2D" instance=ExtResource("6")]
+position = Vector2(179.594, 128.25)
+
+[node name="Player" parent="Node2D" instance=ExtResource("5")]
+position = Vector2(512, 300)
+
+[node name="Hud" parent="." instance=ExtResource("7")]
+
+[connection signal="locked_room_exit_interacted_with" from="NorthRoomExit" to="." method="_on_NorthRoomExit_locked_room_exit_interacted_with"]
+[connection signal="room_exit_triggered" from="NorthRoomExit" to="." method="_on_NorthRoomExit_room_exit_triggered"]
+[connection signal="room_exit_triggered" from="SouthRoomExit" to="." method="_on_SouthRoomExit_room_exit_triggered"]
+[connection signal="room_exit_triggered" from="EastRoomExit" to="." method="_on_EastRoomExit_room_exit_triggered"]
+[connection signal="room_exit_triggered" from="WestRoomExit" to="." method="_on_WestRoomExit_room_exit_triggered"]
+[connection signal="info_requested" from="Node2D/Info" to="." method="_on_Info_info_requested"]

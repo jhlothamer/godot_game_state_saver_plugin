@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://cercpt6g4ukh8"]
+
+[ext_resource type="Texture2D" uid="uid://ck1qchgil1p2w" path="res://assets/images/environment/switch_left.png" id="1_0mim2"]
+[ext_resource type="Texture2D" uid="uid://5vinev1klkiy" path="res://assets/images/environment/switch_right.png" id="2_u01sc"]
+[ext_resource type="Script" path="res://scenes/environment/floor_switch_resource_test.gd" id="3_uheic"]
+[ext_resource type="Resource" uid="uid://r53qe8wlfx8" path="res://scenes/environment/floor_switch_resource_test.tres" id="4_jy5kh"]
+[ext_resource type="Script" path="res://addons/game_state_helper/game_state_helper.gd" id="5_ece7x"]
+[ext_resource type="Texture2D" uid="uid://bob1f380h3f0f" path="res://assets/images/environment/switch_left_interaction_indicator.png" id="6_7a7cc"]
+[ext_resource type="Texture2D" uid="uid://w80r8dsvlnw0" path="res://assets/images/environment/switch_right_interaction_indicator.png" id="7_jbb0n"]
+[ext_resource type="PackedScene" uid="uid://ssskgu44idw5" path="res://scenes/components/interaction/interactable_area_2d.tscn" id="8_m7kro"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m0quj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0mim2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_u01sc")
+}],
+"loop": true,
+"name": &"switched",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h27ka"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_7a7cc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_jbb0n")
+}],
+"loop": true,
+"name": &"switched",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qq8cd"]
+size = Vector2(30, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhvow"]
+size = Vector2(60, 60)
+
+[node name="FloorSwitchResourceTest" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_m0quj")
+offset = Vector2(0, -14)
+script = ExtResource("3_uheic")
+floor_switch_resource = ExtResource("4_jy5kh")
+
+[node name="GameStateHelper" type="Node" parent="."]
+script = ExtResource("5_ece7x")
+save_properties = Array[String](["floor_switch_resource:triggered"])
+
+[node name="InteractionIndicator" type="AnimatedSprite2D" parent="."]
+visible = false
+show_behind_parent = true
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_h27ka")
+offset = Vector2(0, -14)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(1.50169, 2.00226)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_qq8cd")
+
+[node name="interactableArea" parent="." instance=ExtResource("8_m7kro")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactableArea"]
+shape = SubResource("RectangleShape2D_uhvow")
+
+[connection signal="loading_data" from="GameStateHelper" to="." method="_on_game_state_helper_loading_data"]
+[connection signal="InteractionIndicatorStateChanged" from="interactableArea" to="." method="_on_interactable_area_interaction_indicator_state_changed"]
+[connection signal="InteractionStarted" from="interactableArea" to="." method="_on_interactable_area_interaction_started"]

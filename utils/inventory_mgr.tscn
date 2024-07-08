@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2e65s4bkrl75"]
+
+[ext_resource type="Script" path="res://addons/game_state_helper/game_state_helper.gd" id="1"]
+[ext_resource type="Script" path="res://utils/inventory_mgr.gd" id="2"]
+
+[node name="InventoryMgr" type="Node"]
+script = ExtResource("2")
+
+[node name="GameStateHelper" type="Node" parent="."]
+script = ExtResource("1")
+save_properties = Array[String](["inventory_items"])
+global = true
+
+[connection signal="loading_data" from="GameStateHelper" to="." method="_on_GameStateHelper_loading_data"]

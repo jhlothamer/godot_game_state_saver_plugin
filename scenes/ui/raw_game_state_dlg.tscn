@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://3rf7lin42cle"]
+
+[ext_resource type="Script" path="res://scenes/ui/raw_game_state_dlg.gd" id="1"]
+[ext_resource type="Theme" uid="uid://0h6us4pe5qfi" path="res://assets/themes/global.tres" id="1_shst1"]
+
+[node name="RawGameStateDlg" type="AcceptDialog"]
+process_mode = 2
+title = "Raw Game State (read only)"
+position = Vector2i(100, 60)
+size = Vector2i(800, 500)
+theme = ExtResource("1_shst1")
+script = ExtResource("1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -49.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 40
+
+[node name="TextEdit" type="TextEdit" parent="MarginContainer"]
+layout_mode = 2
+context_menu_enabled = false
+shortcut_keys_enabled = false
+virtual_keyboard_enabled = false
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="confirmed" from="." to="." method="_on_RawGameStateDlg_confirmed"]
+[connection signal="custom_action" from="." to="." method="_on_RawGameStateDlg_custom_action"]

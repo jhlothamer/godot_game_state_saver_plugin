@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://4uqwdoj1fivu"]
+
+[ext_resource type="PackedScene" uid="uid://coukma0hbqk0v" path="res://scenes/environment/ball_pedistal.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://oph56k0gk8qm" path="res://scenes/rooms/room.tscn" id="2"]
+[ext_resource type="Script" path="res://scenes/rooms/room_main.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://dj5qovg3gpsq6" path="res://scenes/environment/checkpoint.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://cercpt6g4ukh8" path="res://scenes/environment/floor_switch_resource_test.tscn" id="5_1gsey"]
+
+[node name="RoomMain" instance=ExtResource("2")]
+script = ExtResource("3")
+
+[node name="NorthRoomExit" parent="." index="2"]
+collision_layer = 3
+collision_mask = 7
+locked = true
+destination_level_scene = "res://scenes/rooms/room_north.tscn"
+
+[node name="door" parent="NorthRoomExit/room_exit" index="1"]
+visible = true
+
+[node name="SouthRoomExit" parent="." index="3"]
+destination_level_scene = "res://scenes/rooms/room_south.tscn"
+
+[node name="EastRoomExit" parent="." index="4"]
+destination_level_scene = "res://scenes/rooms/room_east.tscn"
+
+[node name="WestRoomExit" parent="." index="5"]
+position = Vector2(128, 301)
+destination_level_scene = "res://scenes/rooms/room_west.tscn"
+
+[node name="Checkpoint" parent="." index="6" instance=ExtResource("4")]
+position = Vector2(804.591, 398)
+
+[node name="Info" parent="Node2D" index="0"]
+bb_code_info_msg = "In this room you need to do 3 things to open the door.  All of these are done in the adjacent rooms.  This demonstrates that game state saved from the other scenes has an affect on this scene.
+
+Passing the character over the checkpoint in this room will automatically save the game.  The save file will end in \"autosave\".  This can only happen once to simulate a checkpoint in a game."
+
+[node name="WestBallPedistal" parent="Node2D" index="2" instance=ExtResource("1")]
+position = Vector2(412.505, 160.98)
+trigger_id = "west_trigger"
+
+[node name="EastBallPedistal" parent="Node2D" index="3" instance=ExtResource("1")]
+position = Vector2(610.619, 160.98)
+trigger_id = "east_trigger"
+
+[node name="FloorSwitchResourceTest" parent="Node2D" index="4" instance=ExtResource("5_1gsey")]
+position = Vector2(243, 407)
+
+[editable path="NorthRoomExit"]
+[editable path="SouthRoomExit"]
+[editable path="EastRoomExit"]
+[editable path="WestRoomExit"]

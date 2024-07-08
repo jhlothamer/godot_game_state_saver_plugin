@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp8vtge0lck8p"]
+
+[ext_resource type="Theme" uid="uid://butgob8kmyer8" path="res://assets/themes/dialog_theme.tres" id="1"]
+[ext_resource type="Script" path="res://scenes/ui/load_game_dlg.gd" id="2"]
+
+[node name="LoadGameDlg" type="ConfirmationDialog"]
+title = "Load Game"
+position = Vector2i(60, 60)
+size = Vector2i(800, 400)
+theme = ExtResource("1")
+script = ExtResource("2")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -42.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ItemList" type="ItemList" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch_mode = 5
+
+[connection signal="confirmed" from="." to="." method="_on_LoadGameDlg_confirmed"]
+[connection signal="item_selected" from="MarginContainer/HBoxContainer/ItemList" to="." method="_on_ItemList_item_selected"]

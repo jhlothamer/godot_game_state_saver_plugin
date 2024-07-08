@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://dxia3pe7dsfqk"]
+
+[ext_resource type="Texture2D" uid="uid://ck1qchgil1p2w" path="res://assets/images/environment/switch_left.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://5vinev1klkiy" path="res://assets/images/environment/switch_right.png" id="2"]
+[ext_resource type="Script" path="res://scenes/components/interaction/interactable_area_2d.gd" id="3"]
+[ext_resource type="Script" path="res://scenes/environment/floor_switch.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://bob1f380h3f0f" path="res://assets/images/environment/switch_left_interaction_indicator.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://w80r8dsvlnw0" path="res://assets/images/environment/switch_right_interaction_indicator.png" id="6"]
+[ext_resource type="Script" path="res://addons/game_state_helper/game_state_helper.gd" id="7_3c4u6"]
+
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": true,
+"name": &"switched",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6")
+}],
+"loop": true,
+"name": &"switched",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="3"]
+size = Vector2(60, 60)
+
+[sub_resource type="RectangleShape2D" id="4"]
+size = Vector2(30, 10)
+
+[node name="FloorSwitch" type="AnimatedSprite2D"]
+sprite_frames = SubResource("1")
+offset = Vector2(0, -14)
+script = ExtResource("4")
+
+[node name="InteractionIndicator" type="AnimatedSprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(0, -1)
+sprite_frames = SubResource("2")
+offset = Vector2(0, -14)
+
+[node name="InteractableArea2D" type="Area2D" parent="."]
+position = Vector2(0, -14)
+script = ExtResource("3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea2D"]
+shape = SubResource("3")
+
+[node name="GameStateHelper" type="Node" parent="."]
+script = ExtResource("7_3c4u6")
+global = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(1.50169, 2.00226)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("4")
+
+[connection signal="InteractionIndicatorStateChanged" from="InteractableArea2D" to="." method="_on_InteractableArea2D_InteractionIndicatorStateChanged"]
+[connection signal="InteractionStarted" from="InteractableArea2D" to="." method="_on_InteractableArea2D_InteractionStarted"]
+[connection signal="loading_data" from="GameStateHelper" to="." method="_on_GameStateHelper_loading_data"]
+[connection signal="saving_data" from="GameStateHelper" to="." method="_on_GameStateHelper_saving_data"]
