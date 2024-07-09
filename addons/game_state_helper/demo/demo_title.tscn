@@ -1,0 +1,107 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0x7q3jd5p4bk"]
+
+[ext_resource type="Script" path="res://addons/game_state_helper/demo/demo_title.gd" id="1_nvr7f"]
+
+[sub_resource type="Gradient" id="Gradient_qi080"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8ov7m"]
+gradient = SubResource("Gradient_qi080")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0.00512821)
+
+[node name="demo_title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nvr7f")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 0.905882, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_8ov7m")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 50
+text = "Godot Game State Plugin Demo"
+
+[node name="BlurbLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "This demo shows very basic use of the GameStateHelper and GameStateService.  For a more complete demo, please clone the full github repo.
+
+The demo consists of two scenes that can be switch between.  You can set colors of polygons in each scene and those color will be maintained between scene switching and even between demo play sessions.  To reset the game state, just choose New Game as apposed to Continue below."
+autowrap_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="NewGameBtn" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "New Game"
+
+[node name="ContinueGameBtn" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Continue"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="SeeSaveFileBtn" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+tooltip_text = "Open File Explorer to where save file is located"
+theme_override_font_sizes/font_size = 34
+text = "See Save File"
+
+[node name="ExitBtn" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Exit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/NewGameBtn" to="." method="_on_new_game_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer/ContinueGameBtn" to="." method="_on_continue_game_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2/SeeSaveFileBtn" to="." method="_on_see_save_file_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2/ExitBtn" to="." method="_on_exit_btn_pressed"]

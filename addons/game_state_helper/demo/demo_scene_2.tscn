@@ -1,0 +1,138 @@
+[gd_scene load_steps=5 format=3 uid="uid://k8otgpme4rrw"]
+
+[ext_resource type="Script" path="res://addons/game_state_helper/demo/demo_scene_2.gd" id="1_bd0h0"]
+[ext_resource type="Script" path="res://addons/game_state_helper/game_state_helper.gd" id="2_2bfyh"]
+
+[sub_resource type="Gradient" id="Gradient_bu2vn"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v5tna"]
+gradient = SubResource("Gradient_bu2vn")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0.00512821)
+
+[node name="demo_scene_2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bd0h0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.658824, 0, 1, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_v5tna")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Polygon2D1" type="Polygon2D" parent="."]
+position = Vector2(288, 240)
+polygon = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
+
+[node name="Label" type="Label" parent="Polygon2D1"]
+offset_left = -232.0
+offset_top = 80.0
+offset_right = 234.0
+offset_bottom = 170.0
+theme_override_font_sizes/font_size = 30
+text = "My Color is specific to this scene
+Set color below"
+horizontal_alignment = 1
+
+[node name="Polygon1ColorPickerBtn" type="ColorPickerButton" parent="Polygon2D1"]
+offset_left = -64.0
+offset_top = 184.0
+offset_right = 80.0
+offset_bottom = 224.0
+color = Color(1, 1, 1, 1)
+
+[node name="GameStateHelper" type="Node" parent="Polygon2D1"]
+script = ExtResource("2_2bfyh")
+save_properties = Array[String](["self_modulate"])
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+position = Vector2(736, 240)
+polygon = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
+
+[node name="Label" type="Label" parent="Polygon2D2"]
+offset_left = -232.0
+offset_top = 80.0
+offset_right = 234.0
+offset_bottom = 170.0
+theme_override_font_sizes/font_size = 30
+text = "My Color is is global.
+Set color below"
+horizontal_alignment = 1
+
+[node name="Polygon2ColorPickerBtn" type="ColorPickerButton" parent="Polygon2D2"]
+offset_left = -64.0
+offset_top = 184.0
+offset_right = 80.0
+offset_bottom = 224.0
+color = Color(1, 1, 1, 1)
+
+[node name="GameStateHelper" type="Node" parent="Polygon2D2"]
+script = ExtResource("2_2bfyh")
+save_properties = Array[String](["self_modulate"])
+global = true
+
+[node name="TitleMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 92.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TitleLabel" type="Label" parent="TitleMarginContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 50
+text = "Demo Scene 2"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -75.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MainMenuBtn" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "MainMenu"
+
+[node name="SpacerControl" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ChangeSceneBtn" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Go To Other Scene"
+
+[connection signal="color_changed" from="Polygon2D1/Polygon1ColorPickerBtn" to="." method="_on_polygon_1_color_picker_btn_color_changed"]
+[connection signal="color_changed" from="Polygon2D2/Polygon2ColorPickerBtn" to="." method="_on_polygon_2_color_picker_btn_color_changed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/MainMenuBtn" to="." method="_on_main_menu_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ChangeSceneBtn" to="." method="_on_change_scene_btn_pressed"]
