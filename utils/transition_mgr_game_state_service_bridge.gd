@@ -8,5 +8,5 @@ func _ready() -> void:
 		printerr("TransitionMgrGameStateHelperBridge: cant connect to scene_transitioning")
 
 
-func _on_scene_transitioning(new_scene_path) -> void:
-	GameStateService.on_scene_transitioning(new_scene_path)
+func _on_scene_transitioning(_new_scene_path:String) -> void:
+	GameStateService.on_scene_transitioning()

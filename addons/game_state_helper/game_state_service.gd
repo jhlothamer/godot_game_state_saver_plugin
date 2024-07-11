@@ -1,3 +1,4 @@
+class_name GameStateServiceAutoload
 extends Node
 ## The GameStateService autoload.  Used for storing and re-applying game state to nodes in a scene
 ## as well as saving and loading game state to/from disk.
@@ -61,7 +62,7 @@ func dump_game_state() -> void:
 func get_game_state_string(refresh_state: bool = false) -> String:
 	if refresh_state:
 		#fake a scene transition to force game state to be updated
-		on_scene_transitioning("")
+		on_scene_transitioning()
 	return JSON.stringify(_game_state, "\t")
 
 
@@ -76,22 +77,22 @@ func get_global_state_value(key: String):
 ## Loads game state data from given file path.  If loading is successful,
 ## returns scene path that was current when the save file was created.  Use
 ## this path in a call to SceneTree.change_scene_to_file().
-func load_game_state(path: String, scene_transition_func: Callable) -> bool:
+func load_game_state(path: String) -> String:
 	if !FileAccess.file_exists(path):
 		printerr("GameStateService: File does not exist: path %s" % path)
-		return false
+		return ""
 
 	var save_file_hash = _get_file_content_hash(path)
 	var saved_hash = _get_save_file_hash(path)
 
 	if save_file_hash != saved_hash:
 		printerr("GameStateService: Save file is corrupt or has been modified: path %s" % path)
-		return false
+		return ""
 
 	var f = FileAccess.open(path, FileAccess.READ)
 	if f == null or !f.is_open():
 		printerr("GameStateService: File does not exist: path %s" % path)
-		return false
+		return ""
 
 	_game_state = str_to_var(f.get_as_text())
 
@@ -104,10 +105,8 @@ func load_game_state(path: String, scene_transition_func: Callable) -> bool:
 	#return path to scene that was current for save file
 	# this lets caller handle the transition
 	var scene_path = _game_state["meta_data"]["current_scene_path"]
-	if scene_transition_func != null:
-		scene_transition_func.call(scene_path)
 		
-	return true
+	return scene_path
 
 
 ## resets game state for a new game
@@ -121,7 +120,7 @@ func new_game() -> void:
 ## be used during load() to detect if the save game file has been altered.
 func save_game_state(path: String) -> bool:
 	#fake a scene transition to force game state to be updated
-	on_scene_transitioning("")
+	on_scene_transitioning()
 
 	_game_state["game_data_version"] = "1.0"
 
@@ -311,7 +310,7 @@ func _save_freed_save_and_load(data: Dictionary) -> void:
 
 ## To be called right before the current scene is changed with one of the SceneTree.change_scene functions.
 ## This causes the game state for the current scene to be stored in the game state dictionary.
-func on_scene_transitioning(_new_scene_path) -> void:
+func on_scene_transitioning() -> void:
 	# skip the transition when loading a saved game
 	if _skip_next_scene_transition_save:
 		_skip_next_scene_transition_save = false

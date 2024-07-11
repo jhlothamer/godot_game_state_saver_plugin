@@ -15,11 +15,11 @@ func _on_polygon_2_color_picker_btn_color_changed(color: Color) -> void:
 
 func _on_change_scene_btn_pressed() -> void:
 	GameStateService.save_game_state(GameStateHelperDemoConsts.SAVE_GAME_FILE)
-	GameStateService.on_scene_transitioning(GameStateHelperDemoConsts.DEMO_SCENE_1)
+	GameStateService.on_scene_transitioning()
 	get_tree().change_scene_to_file(GameStateHelperDemoConsts.DEMO_SCENE_1)
 
 
 func _on_main_menu_btn_pressed() -> void:
 	GameStateService.save_game_state(GameStateHelperDemoConsts.SAVE_GAME_FILE)
-	GameStateService.on_scene_transitioning(GameStateHelperDemoConsts.DEMO_SCENE_TITLE)
+	GameStateService.on_scene_transitioning()
 	get_tree().change_scene_to_file(GameStateHelperDemoConsts.DEMO_SCENE_TITLE)

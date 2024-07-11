@@ -16,10 +16,10 @@ func _on_new_game_btn_pressed() -> void:
 
 
 func _on_continue_game_btn_pressed() -> void:
-	GameStateService.load_game_state(GameStateHelperDemoConsts.SAVE_GAME_FILE, _change_scene)
+	var scene_file_path := GameStateService.load_game_state(GameStateHelperDemoConsts.SAVE_GAME_FILE)
+	if !scene_file_path:
+		return
 
-
-func _change_scene(scene_file_path:String) -> void:
 	get_tree().change_scene_to_file(scene_file_path)
 
 

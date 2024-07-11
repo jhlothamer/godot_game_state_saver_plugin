@@ -56,5 +56,8 @@ func _on_LoadGameDlg_confirmed():
 		var index = selected[0]
 		var base_file_name = _item_list.get_item_text(index)
 		var save_file_name = SaveGameDlg.SAVE_GAME_FOLDER + "/" + base_file_name + ".json"
-		GameStateService.load_game_state(save_file_name, TransitionMgr.transition_to)
+		var scene_file_path := GameStateService.load_game_state(save_file_name)
+		if !scene_file_path:
+			return
+		TransitionMgr.transition_to(scene_file_path)
 
