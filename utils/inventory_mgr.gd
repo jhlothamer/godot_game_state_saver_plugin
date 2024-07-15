@@ -9,9 +9,9 @@ enum InventoryItems {
 }
 
 
-var inventory_items := []
+var inventory_items:Array[int] = []
 
-func _ready():
+func _ready() -> void:
 	GameStateService.new_game_state_initialized.connect(_on_new_game_state_initialized)
 
 
@@ -30,8 +30,8 @@ func has_item(item_id: int) -> bool:
 
 
 
-func _on_GameStateHelper_loading_data(_data):
+func _on_GameStateHelper_loading_data(_data:Dictionary) -> void:
 	emit_signal("inventory_updated")
 
-func _on_new_game_state_initialized():
+func _on_new_game_state_initialized() -> void:
 	inventory_items.clear()

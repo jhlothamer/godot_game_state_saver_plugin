@@ -24,20 +24,19 @@ func _set_facing_direction(value: Vector2) -> void:
 		_animated_sprite.play("right")
 
 
-func _physics_process(_delta):
+func _physics_process(_delta:float) -> void:
 	if disabled:
 		return
 	
 	_handle_interaction()
 	
-	var v = _get_move_vector()
+	var v := _get_move_vector()
 	if v == Vector2.ZERO:
 		return
 	face_direction(v)
 	v = v.normalized()*speed
 	set_velocity(v)
 	move_and_slide()
-	var _discard = velocity
 
 
 func _get_move_vector() -> Vector2:
@@ -54,7 +53,7 @@ func _get_move_vector() -> Vector2:
 	return v
 
 
-func _handle_interaction():
+func _handle_interaction() -> void:
 	if !Input.is_action_just_pressed("interact"):
 		return
 	_interaction_area.start_interaction_with_closest_interactable_object(self)

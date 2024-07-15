@@ -1,12 +1,12 @@
 extends CanvasLayer
 
-signal scene_transitioning(new_scene_path)
+signal scene_transitioning(new_scene_path:String)
 
 @onready var _fade_animation:AnimationPlayer = $fadeAnimation
 
 
 var _starting_bus_volume: float
-var _for_anim_db = 1.0 :
+var _for_anim_db := 1.0 :
 	get:
 		return _for_anim_db # TODOConverter40 Non existent get function 
 	set(mod_value):
@@ -24,7 +24,7 @@ func set_for_anim_db(value: float) -> void:
 		AudioServer.set_bus_volume_db(0, _mute_bus_volume - _for_anim_db*(_mute_bus_volume - _starting_bus_volume))
 
 
-func transition_to(scene_path: String, speed_seconds:float = -1.0, include_sound = false):
+func transition_to(scene_path: String, speed_seconds:float = -1.0, include_sound:bool = false) -> void:
 	if speed_seconds <= 0.0:
 		speed_seconds = _default_speed
 	_scene_path = scene_path
@@ -35,10 +35,10 @@ func transition_to(scene_path: String, speed_seconds:float = -1.0, include_sound
 	
 
 
-func _on_fade_animation_animation_finished(anim_name):
+func _on_fade_animation_animation_finished(anim_name:String) -> void:
 	if anim_name == "fadeOut":
 		scene_transitioning.emit(_scene_path)
-		var results = get_tree().change_scene_to_file(_scene_path)
+		var results := get_tree().change_scene_to_file(_scene_path)
 		if results != OK:
 			printerr("TransitionMgr: could not change to scene '%s'" % _scene_path)
 			return

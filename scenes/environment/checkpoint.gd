@@ -4,7 +4,7 @@ extends Area2D
 
 @onready var _collision_shape: CollisionShape2D = $CollisionShape2D
 
-func _set_triggered(value: bool):
+func _set_triggered(value: bool) -> void:
 	triggered = value
 	if triggered:
 		visible = false
@@ -12,24 +12,24 @@ func _set_triggered(value: bool):
 			_collision_shape.set_deferred("disabled", true)
 
 
-func _on_Checkpoint_body_entered(body):
+func _on_Checkpoint_body_entered(body:Node2D) -> void:
 	if body is Player:
 		self.triggered = true
 		_start_checkpoint_save()
 
 
-func _start_checkpoint_save():
+func _start_checkpoint_save() -> void:
 	self.triggered = true
 	await RenderingServer.frame_post_draw
-	var screenshot = get_viewport().get_texture().get_image()
+	var screenshot := get_viewport().get_texture().get_image()
 	var thread := Thread.new()
 	thread.start(Callable(self, "_save_thread_func").bind([screenshot, thread]))
 
 
-func _send_autosave_event(on: bool):
+func _send_autosave_event(on: bool) -> void:
 	# there are far better ways to trigger this
 	#   but this will do for a demo
-	var event = InputEventAction.new()
+	var event := InputEventAction.new()
 	event.action = "autosave_on" if on else "autosave_off"
 	event.button_pressed = true
 	Input.parse_input_event(event)

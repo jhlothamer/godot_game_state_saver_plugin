@@ -6,21 +6,21 @@ extends Node
 ## Signal emitted when data is being loaded.  The data parameter is a Dictionary
 ## with the data that was previously saved for the game object. 
 ## This allows for game objects to have custom loading logic.
-signal loading_data(data)
+signal loading_data(data:Dictionary)
 ## Signal emitted when data is being saved.  Data added to the data Dictionary will be saved.
 ## This allows for game objects to have custom saving data.
-signal saving_data(data)
+signal saving_data(data:Dictionary)
 
 # node group for helper nodes
-const NODE_GROUP = "GameStateHelper"
+const NODE_GROUP := "GameStateHelper"
 # parent node path
-const GAME_STATE_KEY_NODE_PATH = "game_state_helper_node_path"
+const GAME_STATE_KEY_NODE_PATH := "game_state_helper_node_path"
 # owner node path
-const GAME_STATE_KEY_OWNER_NODE_PATH = "game_state_helper_owner_node_path"
+const GAME_STATE_KEY_OWNER_NODE_PATH := "game_state_helper_owner_node_path"
 # path to scene file so dynamically instanced nodes can be re-instanced
-const GAME_STATE_KEY_INSTANCE_SCENE = "game_state_helper_dynamic_recreate_scene"
+const GAME_STATE_KEY_INSTANCE_SCENE := "game_state_helper_dynamic_recreate_scene"
 # flag indicating that an instanced child scene was freed so that is can be re-freed when scene re-loaded
-const GAME_STATE_KEY_PARENT_FREED = "game_state_helper_parent_freed"
+const GAME_STATE_KEY_PARENT_FREED := "game_state_helper_parent_freed"
 
 
 """
@@ -67,7 +67,7 @@ func _set_global(value: bool) -> void:
 	global = value
 
 
-func _enter_tree():
+func _enter_tree() -> void:
 	# must add to group since this is just a GDScript file (no scene file)
 	add_to_group(NODE_GROUP)
 	if has_user_signal("instanced_child_scene_freed"):
@@ -84,8 +84,8 @@ func _enter_tree():
 ## Saves property values from it's parent to the given data dictionary.  Called from the 
 ## GameStateService.
 func save_data(data: Dictionary) -> void:
-	var parent = get_parent()
-	var id = GameStateHelper.get_id(parent)
+	var parent := get_parent()
+	var id := GameStateHelper.get_id(parent)
 
 	var node_data := {}
 	if global:
@@ -116,8 +116,8 @@ func save_data(data: Dictionary) -> void:
 ## Loads property values from data dictionary and sets them on parent.  Called
 ## from the GameStateService.
 func load_data(data: Dictionary) -> void:
-	var parent = get_parent()
-	var id = str(parent.get_path())
+	var parent := get_parent()
+	var id := str(parent.get_path())
 	
 	var node_data: Dictionary
 	
@@ -153,12 +153,12 @@ static func get_id(node:Node) -> String:
 """
 If parent exits the tree, let manager know so we save this fact in the save file.
 """
-func _exit_tree():
+func _exit_tree() -> void:
 	if dynamic_instance:
 		return
-	var parent = get_parent()
-	var id = GameStateHelper.get_id(parent)
-	var save_freed_object = SaveFreedInstancedChildScene.new(id, id)
+	var parent := get_parent()
+	var id := GameStateHelper.get_id(parent)
+	var save_freed_object := SaveFreedInstancedChildScene.new(id, id)
 	
 	emit_signal("instanced_child_scene_freed", save_freed_object)
 

@@ -9,7 +9,7 @@ extends CanvasLayer
 @onready var _auto_save_icon: TextureRect = $AutoSaveMarginContainer/AutoSaveTextureRect
 @onready var _auto_save_animation_player: AnimationPlayer = $AutoSaveMarginContainer/AutoSaveAnimationPlayer
 
-func _ready():
+func _ready() -> void:
 	_auto_save_icon.visible = false
 
 
@@ -23,15 +23,15 @@ func show_message(msg: String) -> void:
 	_msg_timer.start()
 
 
-func _on_ViewGameStateBtn_pressed():
+func _on_ViewGameStateBtn_pressed() -> void:
 	_game_state_dlg.show_modal()
 
 
-func _on_MessageTimer_timeout():
+func _on_MessageTimer_timeout() -> void:
 	_msg_label.text = ""
 
 
-func _input(event):
+func _input(event:InputEvent) -> void:
 	# there are far better ways to trigger this
 	#   but this will do for a demo
 	if event.is_action("autosave_on"):
@@ -43,7 +43,7 @@ func _input(event):
 
 
 
-func _on_AutoSaveAnimationPlayer_animation_finished(anim_name):
+func _on_AutoSaveAnimationPlayer_animation_finished(anim_name:String) -> void:
 	if anim_name == "RESET":
 		return
 	_auto_save_icon.visible = false

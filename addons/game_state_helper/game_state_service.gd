@@ -34,26 +34,26 @@ var _game_state := {
 #list of scene resources that have already been loaded
 var _loaded_scene_resources := {}
 # list of objects with data about instanced child scenes that have been freed
-var _freed_instanced_scene_save_and_loads = []
+var _freed_instanced_scene_save_and_loads:Array[GameStateHelper.SaveFreedInstancedChildScene]= []
 # used when saved game is loaded - prevents current scene game state from being saved before changing scene
 var _skip_next_scene_transition_save := false
 
 
-func _ready():
+func _ready() -> void:
 	# monitor whenever a node is added in the tree - we can tell when a new scene is loaded this way
 	if OK != get_tree().node_added.connect(_on_scene_tree_node_added):
 		printerr("GameStateService: could not connect to scene tree node_added signal!")
 	
-	var current_scene = get_tree().current_scene
+	var current_scene := get_tree().current_scene
 	if current_scene != null:
 		_on_scene_tree_node_added(current_scene)
 
 
 ## Creates a json file with the raw game state dictionary data.  This is used for debugging.
 func dump_game_state() -> void:
-	var file_name = "user://game_state_dump_%s.json" % _get_date_time_string()
-	var json_string = JSON.stringify(_game_state, "\t")
-	var f = FileAccess.open(file_name, FileAccess.WRITE)
+	var file_name := "user://game_state_dump_%s.json" % _get_date_time_string()
+	var json_string := JSON.stringify(_game_state, "\t")
+	var f := FileAccess.open(file_name, FileAccess.WRITE)
 	f.store_string(json_string)
 
 
@@ -67,11 +67,13 @@ func get_game_state_string(refresh_state: bool = false) -> String:
 
 
 ## Gets a value from the global game state.
-func get_global_state_value(key: String):
-	var global_state = _game_state["global"]
+func get_global_state_value(key: String, default_value:Variant = null) -> Variant:
+	var global_state:Dictionary = _game_state["global"]
 	if global_state.has(key):
+		if global_state[key] == null and default_value != null:
+			return default_value
 		return global_state[key]
-	return null
+	return default_value
 
 
 ## Loads game state data from given file path.  If loading is successful,
@@ -82,14 +84,14 @@ func load_game_state(path: String) -> String:
 		printerr("GameStateService: File does not exist: path %s" % path)
 		return ""
 
-	var save_file_hash = _get_file_content_hash(path)
-	var saved_hash = _get_save_file_hash(path)
+	var save_file_hash := _get_file_content_hash(path)
+	var saved_hash := _get_save_file_hash(path)
 
 	if save_file_hash != saved_hash:
 		printerr("GameStateService: Save file is corrupt or has been modified: path %s" % path)
 		return ""
 
-	var f = FileAccess.open(path, FileAccess.READ)
+	var f := FileAccess.open(path, FileAccess.READ)
 	if f == null or !f.is_open():
 		printerr("GameStateService: File does not exist: path %s" % path)
 		return ""
@@ -97,14 +99,12 @@ func load_game_state(path: String) -> String:
 	_game_state = str_to_var(f.get_as_text())
 
 	f.close()
-	
-	_data_format_version_migration()
 
 	_skip_next_scene_transition_save = true
 
 	#return path to scene that was current for save file
 	# this lets caller handle the transition
-	var scene_path = _game_state["meta_data"]["current_scene_path"]
+	var scene_path:String = _game_state["meta_data"]["current_scene_path"]
 		
 	return scene_path
 
@@ -124,7 +124,7 @@ func save_game_state(path: String) -> bool:
 
 	_game_state["game_data_version"] = "1.0"
 
-	var f = FileAccess.open(path, FileAccess.WRITE)
+	var f := FileAccess.open(path, FileAccess.WRITE)
 	if f == null or !f.is_open():
 		printerr("Couldn't open file to save to : %s" % path)
 		return false
@@ -137,8 +137,8 @@ func save_game_state(path: String) -> bool:
 
 
 ## Sets a value from the global game state.
-func set_global_state_value(key: String, value) -> void:
-	var global_state = _game_state["global"]
+func set_global_state_value(key: String, value:Variant) -> void:
+	var global_state:Dictionary = _game_state["global"]
 	global_state[key] = value
 
 
@@ -155,8 +155,8 @@ func _on_scene_tree_node_added(node : Node) -> void:
 Determines an id for a scene node.  This id is used as a key to the game state dictionary.
 """
 func _get_scene_id(node: Node) -> String:
-	var id = node.get("id")
-	if id == null:
+	var id:String = node.get("id") if node.get("id") != null else ""
+	if id.is_empty():
 		if node.scene_file_path != null:
 			id = node.scene_file_path
 		else:
@@ -173,7 +173,7 @@ func _get_scene_data(id: String, node: Node) -> Dictionary:
 	var scene_data: Dictionary = _game_state["scene_data"]
 	
 	if !scene_data.has(id):
-		var temp = {
+		var temp := {
 			"scene_file_path": node.scene_file_path,
 			"node_data": {}
 			}
@@ -202,16 +202,15 @@ func _handle_scene_load(node: Node) -> void:
 	# connect to helper node freed signal - for handling instanced child scenes that are freed at runtime
 	_connect_to_GameStateHelper_freed_signal()
 	
-	var scene_data = _get_scene_data(scene_id, node)
-	var node_data = scene_data["node_data"]
-	var global_state = _game_state["global"]
+	var scene_data := _get_scene_data(scene_id, node)
+	var node_data:Dictionary = scene_data["node_data"]
+	var global_state:Dictionary = _game_state["global"]
 
 	# recreate dynamically instanced nodes
 	_load_dynamic_instanced_nodes(node_data)
 
 	# load data into each helper node
-	for temp in get_tree().get_nodes_in_group(GameStateHelper.NODE_GROUP):
-		var helper: GameStateHelper = temp
+	for helper: GameStateHelper in get_tree().get_nodes_in_group(GameStateHelper.NODE_GROUP):
 		if helper.debug:
 			breakpoint
 		if helper.global:
@@ -227,7 +226,7 @@ func _handle_scene_load(node: Node) -> void:
 Creates new instances of any dynamicly instanced node and loads their saved data.
 """
 func _load_dynamic_instanced_nodes(data: Dictionary) -> void:
-	for id in data.keys():
+	for id:String in data.keys():
 		if typeof(data[id]) != TYPE_DICTIONARY:
 			continue
 		var node_data: Dictionary = data[id]
@@ -235,7 +234,7 @@ func _load_dynamic_instanced_nodes(data: Dictionary) -> void:
 			continue
 		if !node_data.has(GameStateHelper.GAME_STATE_KEY_NODE_PATH):
 			continue
-		var parent = _get_parent(node_data[GameStateHelper.GAME_STATE_KEY_NODE_PATH])
+		var parent := _get_parent(node_data[GameStateHelper.GAME_STATE_KEY_NODE_PATH])
 		if parent == null:
 			printerr("GameStateService: could not get parent for dynamic instanced node: %s" % node_data[GameStateHelper.GAME_STATE_KEY_NODE_PATH])
 			continue
@@ -246,8 +245,8 @@ func _load_dynamic_instanced_nodes(data: Dictionary) -> void:
 Gets the parent given a child node path
 """
 func _get_parent(child_node_path: String) -> Node:
-	var parent_path = child_node_path.get_base_dir()
-	var parent = get_tree().root.get_node_or_null(parent_path)
+	var parent_path := child_node_path.get_base_dir()
+	var parent := get_tree().root.get_node_or_null(parent_path)
 	return parent
 
 
@@ -258,7 +257,7 @@ func _get_scene_resource(resource_path: String) -> PackedScene:
 	if _loaded_scene_resources.has(resource_path):
 		return _loaded_scene_resources[resource_path]
 	
-	var resource = load(resource_path)
+	var resource := load(resource_path)
 	if resource == null:
 		printerr("GameStateService: Could not load scene resource: %s" % resource_path)
 	_loaded_scene_resources[resource_path] = resource
@@ -273,9 +272,9 @@ func _instance_scene(parent: Node, node_data: Dictionary, id: String) -> void:
 	if resource == null:
 		printerr("GameStateService: Could not instance node:  resource not found.   Save file id: %s, scene path: %s" % [id, node_data[GameStateHelper.GAME_STATE_KEY_INSTANCE_SCENE]])
 		return
-	var instance = resource.instantiate()
+	var instance := resource.instantiate()
 	var path := NodePath(id)
-	var node_name = path.get_name(path.get_name_count() - 1)
+	var node_name := path.get_name(path.get_name_count() - 1)
 	instance.name = node_name
 	parent.add_child(instance)
 
@@ -284,7 +283,7 @@ func _instance_scene(parent: Node, node_data: Dictionary, id: String) -> void:
 Connects to all GameStateHelper nodes freed signal.  This is to track when an 
 instanced child scene is freed at runtime.
 """
-func _connect_to_GameStateHelper_freed_signal():
+func _connect_to_GameStateHelper_freed_signal() -> void:
 	for save_and_load in get_tree().get_nodes_in_group(GameStateHelper.NODE_GROUP):
 		if !save_and_load.is_connected("instanced_child_scene_freed", Callable(self, "_on_instanced_child_scene_freed")):
 			save_and_load.connect("instanced_child_scene_freed", Callable(self, "_on_instanced_child_scene_freed"))
@@ -294,7 +293,7 @@ func _connect_to_GameStateHelper_freed_signal():
 Handler func for the GameStateHelper's instanced_child_scene_freed signal.
 The object passed in the signal is saved off to be processed when game state is saved.
 """
-func _on_instanced_child_scene_freed(save_freed_instanced_child_scene_object) -> void:
+func _on_instanced_child_scene_freed(save_freed_instanced_child_scene_object: GameStateHelper.SaveFreedInstancedChildScene) -> void:
 	_freed_instanced_scene_save_and_loads.append(save_freed_instanced_child_scene_object)
 
 
@@ -322,13 +321,13 @@ func on_scene_transitioning() -> void:
 	if scene_id.is_empty():
 		return
 
-	var scene_data = _get_scene_data(scene_id, current_scene)
+	var scene_data := _get_scene_data(scene_id, current_scene)
 	var node_data := {}
 	scene_data["node_data"] = node_data
-	var global_state = _game_state["global"]
+	var global_state:Dictionary = _game_state["global"]
 	
 	# save state
-	for n in get_tree().get_nodes_in_group(GameStateHelper.NODE_GROUP):
+	for n:GameStateHelper in get_tree().get_nodes_in_group(GameStateHelper.NODE_GROUP):
 		if n.debug:
 			breakpoint
 		if n.global:
@@ -343,9 +342,9 @@ func on_scene_transitioning() -> void:
 """
 Get a string based on current date/time - used for generating file names.
 """
-func _get_date_time_string():
+func _get_date_time_string() -> String:
 	# year, month, day, weekday, dst (daylight savings time), hour, minute, second.
-	var datetime = Time.get_datetime_dict_from_system()
+	var datetime := Time.get_datetime_dict_from_system()
 	return "%d%02d%02d_%02d%02d%02d" % [datetime["year"], datetime["month"], datetime["day"], datetime["hour"], datetime["minute"], datetime["second"]]
 
 
@@ -353,10 +352,10 @@ func _get_date_time_string():
 Gets the md5 hash of the contents of a file.
 """
 func _get_file_content_hash(file_path: String) -> String:
-	var f = FileAccess.open(file_path, FileAccess.READ)
+	var f := FileAccess.open(file_path, FileAccess.READ)
 	if f == null or !f.is_open():
 		return ""
-	var content = f.get_as_text()
+	var content := f.get_as_text()
 	f.close()
 	return content.md5_text()
 
@@ -366,10 +365,10 @@ Gets md5 hash of a save file that was saved along side (in another file)
 """
 func _get_save_file_hash(file_path: String) -> String:
 	file_path = file_path.replace("." + file_path.get_extension(), ".dat")
-	var f = FileAccess.open(file_path, FileAccess.READ)
+	var f := FileAccess.open(file_path, FileAccess.READ)
 	if f == null or !f.is_open():
 		return ""
-	var content = f.get_as_text()
+	var content := f.get_as_text()
 	f.close()
 	return content
 
@@ -380,50 +379,11 @@ md5 hash of the save file contents.  This hash is used to detect if the save fil
 contents have been altered.
 """
 func _save_save_file_hash(file_path: String) -> void:
-	var content_hash = _get_file_content_hash(file_path)
+	var content_hash := _get_file_content_hash(file_path)
 	file_path = file_path.replace("." + file_path.get_extension(), ".dat")
-	var f = FileAccess.open(file_path, FileAccess.WRITE)
+	var f := FileAccess.open(file_path, FileAccess.WRITE)
 	if f == null or !f.is_open():
 		return
 	f.store_string(content_hash)
 	f.close()
-
-
-func _data_format_version_migration() -> void:
-	if !_game_state["meta_data"].has("data_format_version"):
-		_data_format_version_mgration_pre_v1()
-
-
-func _data_format_version_mgration_pre_v1() -> void:
-	print("converting save game data from pre v1 to v1")
-	_game_state["meta_data"]["data_format_version"] = "1.0"
-	var scene_data:Dictionary = _game_state["scene_data"]
-	for scene_data_key in scene_data.keys():
-		var node_data:Dictionary = scene_data[scene_data_key]["node_data"]
-		var node_data_keys_to_change := {}
-		for node_data_key in node_data:
-			if node_data_key.find("@") > -1:
-				node_data_keys_to_change[node_data_key] = node_data_key.replace("@", "_")
-			var node_data_dictionary:Dictionary = node_data[node_data_key]
-			var props_to_convert_keys = [
-				GameStateHelper.GAME_STATE_KEY_NODE_PATH,
-				GameStateHelper.GAME_STATE_KEY_OWNER_NODE_PATH]
-			for key in props_to_convert_keys:
-				if node_data_dictionary.has(key):
-					var value = node_data_dictionary[key]
-					var original_value = str(value)
-					var is_node_path = value is NodePath
-					value = str(value).replace("@", "_")
-					if original_value == value:
-						continue
-					print("updating node data for %s: '%s' -> '%s'" % [key, original_value, value])
-					if is_node_path:
-						value = NodePath(value)
-					node_data_dictionary[key] = value
-		for key in node_data_keys_to_change.keys():
-			print("GameStateService: updating node data key : '%s' -> '%s'" % [key, node_data_keys_to_change[key]])
-			node_data[node_data_keys_to_change[key]] = node_data[key]
-			node_data.erase(key)
-	print("conversion for save game data from pre v1 to v1 complete")
-	
 

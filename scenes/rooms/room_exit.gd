@@ -4,7 +4,7 @@ extends StaticBody2D
 
 
 signal room_exit_triggered()
-signal locked_room_exit_interacted_with(room_exit)
+signal locked_room_exit_interacted_with(room_exit:RoomExit)
 
 
 @export var enabled := true: set = _set_enabled
@@ -32,7 +32,7 @@ func _set_locked(value: bool) -> void:
 		set_collision_mask_value(1, value)
 
 
-func _ready():
+func _ready() -> void:
 	_set_locked(locked)
 	_set_enabled(enabled)
 	if !enabled or locked:
@@ -47,7 +47,7 @@ func get_player_enter_position() -> Vector2:
 	return _player_enter_position.global_position
 
 
-func _on_ExitDetectArea_body_entered(body):
+func _on_ExitDetectArea_body_entered(body:Node2D) -> void:
 	if !body is Player:
 		return
 	if destination_level_scene.is_empty():
@@ -58,13 +58,13 @@ func _on_ExitDetectArea_body_entered(body):
 	TransitionMgr.transition_to(destination_level_scene)
 
 
-func _on_InteractableArea2D_InteractionIndicatorStateChanged(_interactable, indicator_visible):
+func _on_InteractableArea2D_InteractionIndicatorStateChanged(_interactable:Node2D, indicator_visible: bool) -> void:
 	if !locked or !enabled:
 		return
 	_door_interact_indicator.visible = indicator_visible
 
 
-func _on_InteractableArea2D_InteractionStarted(_interactable, _interactor):
+func _on_InteractableArea2D_InteractionStarted(_interactable:Node2D, _interactor: Node2D) -> void:
 	if !locked or !enabled:
 		return
 	emit_signal("locked_room_exit_interacted_with", self)

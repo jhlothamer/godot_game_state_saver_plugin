@@ -1,7 +1,7 @@
 extends "res://scenes/rooms/room.gd"
 
-@onready var _west_pedistal = $Node2D/WestBallPedistal
-@onready var _east_pedistal = $Node2D/EastBallPedistal
+@onready var _west_pedistal:BallPedistal = $Node2D/WestBallPedistal
+@onready var _east_pedistal:BallPedistal = $Node2D/EastBallPedistal
 @onready var _north_room_exit := $NorthRoomExit
 
 
@@ -17,13 +17,13 @@ func _how_many_things_needed_to_unlock() -> int:
 	return count
 
 
-func _on_NorthRoomExit_locked_room_exit_interacted_with(_room_exit):
-	var things_needed_count = _how_many_things_needed_to_unlock()
+func _on_NorthRoomExit_locked_room_exit_interacted_with(_room_exit:RoomExit) -> void:
+	var things_needed_count := _how_many_things_needed_to_unlock()
 	if things_needed_count == 0:
 		_north_room_exit.locked = false
 		InventoryMgr.remove_item(InventoryMgr.InventoryItems.KEY)
 		return
-	var plural = "s" if things_needed_count > 1 else ""
-	var msg = "You still need to do %d thing%s to unlock this door." % [things_needed_count, plural]
+	var plural := "s" if things_needed_count > 1 else ""
+	var msg := "You still need to do %d thing%s to unlock this door." % [things_needed_count, plural]
 	_hud.show_message(msg)
 

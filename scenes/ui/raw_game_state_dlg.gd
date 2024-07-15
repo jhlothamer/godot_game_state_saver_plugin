@@ -5,7 +5,7 @@ const ACTION_BUTTON_DUMP_TO_FILE = "DumpStateToFile"
 @onready var _text_edit: TextEdit = $MarginContainer/TextEdit
 
 
-func _ready():
+func _ready() -> void:
 	visible = false
 	add_button("Dump State to File (see user://)", true, ACTION_BUTTON_DUMP_TO_FILE)
 #	var close_btn = get_close_button()
@@ -18,15 +18,14 @@ func show_modal() -> void:
 	popup_centered()
 
 
-func _on_RawGameStateDlg_custom_action(action):
+func _on_RawGameStateDlg_custom_action(action:String) -> void:
 	if action == ACTION_BUTTON_DUMP_TO_FILE:
 		GameStateService.dump_game_state()
 
 
-func _on_RawGameStateDlg_confirmed():
+func _on_RawGameStateDlg_confirmed() -> void:
 	get_tree().paused = false
 
 
-func _on_close_requested():
-#	pass # Replace with function body.
+func _on_close_requested() -> void:
 	_on_RawGameStateDlg_confirmed()

@@ -10,11 +10,11 @@ func _set_info_text(value: String) -> void:
 	_label.text = value
 
 
-func _ready():
+func _ready() -> void:
 	visible = false
 
 
-func _on_InfoDialog_confirmed():
+func _on_InfoDialog_confirmed() -> void:
 	get_tree().paused = false
 
 
@@ -23,8 +23,5 @@ func show_modal() -> void:
 	show()
 	
 
-
-
-
-func _on_close_requested():
+func _on_close_requested() -> void:
 	_on_InfoDialog_confirmed()
