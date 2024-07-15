@@ -48,7 +48,7 @@ static func _save(screenshot: Image, checkpoint: bool) -> void:
 	if checkpoint:
 		date_string += "_autosave"
 	var save_game_file_name := SAVE_GAME_FOLDER + "/" + date_string + ".json"
-	var results:bool = GameStateService.call_thread_safe("save_game_state", save_game_file_name)
+	var results:Variant = GameStateService.call_thread_safe("save_game_state", save_game_file_name)
 	# if save failed - return
 	# note: results will be null if saving from a different thread - assuming success in this case
 	if results != null and results == false:

@@ -28,7 +28,7 @@ TransitionMgrGameStateServiceBridge="*res://utils/transition_mgr_game_state_serv
 
 gdscript/warnings/exclude_addons=false
 gdscript/warnings/unused_variable=2
-gdscript/warnings/untyped_declaration=1
+gdscript/warnings/untyped_declaration=2
 
 [display]
 

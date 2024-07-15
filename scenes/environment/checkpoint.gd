@@ -31,7 +31,7 @@ func _send_autosave_event(on: bool) -> void:
 	#   but this will do for a demo
 	var event := InputEventAction.new()
 	event.action = "autosave_on" if on else "autosave_off"
-	event.button_pressed = true
+	event.pressed = true
 	Input.parse_input_event(event)
 
 
