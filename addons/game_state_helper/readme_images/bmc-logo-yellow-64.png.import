@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cttnknxuj1yls"
-path="res://.godot/imported/bmc-logo-yellow-64.png-82040ee671e92217ab49b5a042f7e48b.ctex"
+path="res://.godot/imported/bmc-logo-yellow-64.png-0b0499da729eebc17ff1a2694e39eb7a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://readme_images/bmc-logo-yellow-64.png"
-dest_files=["res://.godot/imported/bmc-logo-yellow-64.png-82040ee671e92217ab49b5a042f7e48b.ctex"]
+source_file="res://addons/game_state_helper/readme_images/bmc-logo-yellow-64.png"
+dest_files=["res://.godot/imported/bmc-logo-yellow-64.png-0b0499da729eebc17ff1a2694e39eb7a.ctex"]
 
 [params]
 
