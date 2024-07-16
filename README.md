@@ -1,8 +1,8 @@
 # Godot Game State Plugin
 
-This plugin maintains game object state (property values) between scenes or even on reloads of the same scene as well as save that state to a file.  It handles the following scenarios for you:
+This plugin maintains game object state (property values) between scenes as well as save that state to a file.  It handles the following scenarios for you:
 
-1. Re-applying property values to game objects that are always present in the scene.  For example if an object is moved by the player, it's position can be maintained so that it's in the "right" position when the scene is reloaded.
+1. Re-applying property values to game objects that are always present in the scene.  For example if an object is moved by the player, it's position can be maintained so that it's in the new position when the scene is reloaded.
 2. Re-instance a game object that was dynamically added to the scene.  For example if an enemy drops an item and you want it to stay in the game even when the player leaves the scene, the plugin will re-instance this object.  Of course other properties can be persisted too, like the objects position.
 3. Re-free a game object that was freed from the scene.  For example, a quest item is added to a scene at design time, and so is normally always present.  However, the player can pick up the item, and so we need it to be re-freed every time the player revisits the scene.
 4. Share values between scenes.  This is done with a "global" section of the game state data.  This allows something happening in one scene to affect something else in another.  For example, a switch in once scene can set a global value to true which unlocks a door in another scene.  Inventory items are another global value.  The list of items can be made global so that the inventory system always has the same list in every scene.
@@ -21,12 +21,36 @@ The plugin comes with a very simple demo in its addon folder, but if you want a 
 ### Setting Up Game Objects
 For the game object you wish to save state for, add a GameStateHelper node as a child node.  Then add all of the property names of the properties you want to save.
 
+In the following example, the Player object's global_position and the value of a custom property called facing_direction are saved.
+
+<p align="center">
+<img src="./readme_images/game_state_helper_setup_example.png" />
+</p>
+
+
 If the game object is a dynamically instanced child scene (like a spawned enemy), you will want to check the Dynamic Instance property of the GameStateHelper.
 
-If the game state for the object is not specific to a scene and should be the same no matter what scene the object is in, check the Global property of the GameStateHelper.  An example of this can be an inventory where you need the inventory to be the same no matter what scene is loaded.
+In the following example the Bouncer object is set to Dynamic Instance.  This means that when the scene is reloaded, bouncers will be re-instanced and added back into the scene tree.
+
+<p align="center">
+<img src="./readme_images/game_state_helper_dynamic_setup.png" />
+</p>
+
+Also note that there is a second GameStateHelper in the above example.  This preserves the Icon's modulate as the bouncer is given a random color.  You can have as many GameStateHelper nodes as needed.
+
+
+If the game state for the object is not specific to a scene and should be the same no matter what scene the object is in, check the Global property of the GameStateHelper.
+
+In the following example an InventoryMgr is set to global so that the array of inventory items will always be present and the same for every scene.
+
+
+<p align="center">
+<img src="./readme_images/game_state_helper_global_setup.png" />
+</p>
+
 
 ### Must Do This Before Every Scene Change
-Before changing scenes in your game, you must call the GameStateService autoload's on_scene_transitioning() function.  This causes the service to collect all of the game state so the next time the current scene is loaded the game state can be re-applied.
+Before changing scenes in your game, you must call the GameStateService's on_scene_transitioning() function.  This causes the service to collect all of the game state so the next time the current scene is loaded the game state can be re-applied.
 
 
 For example:
@@ -39,7 +63,7 @@ For example:
 Not everything can be boiled down to a property value and you may occasionally need to calculate or obtain a value for state with some code.  The GameStateHelper node has two signals that you can use for this called loading_data(data:Dictionary) and saving_data(data:Dictionary).  All you need to do is add entries to the dictionary when saving or access entries when loading in the callback functions connected to these signals.  NOTE: custom data entries may not be present in the dictionary for the loading_data() signal as that signal is emitted before the saving_data() signal.
 
 ### Starting A New Game
-Whenever a new game is started, you should call the GameStateHelper autoload's new_game() function.  This clears the game state.  If this is not done, then game state from previous play sessions will be applied and would cause strange things to happen in the game.
+Whenever a new game is started, you should call the GameStateService's new_game() function.  This clears the game state.  If this is not done, then game state from previous play sessions will be applied and would cause strange things to happen in the game.
 
 For example:
 
@@ -96,6 +120,9 @@ The autoload that manages game state.
 - set_global_state_value(key: String, value) - Sets a value from the global game state.
 
 
+
+## <img src="readme_images/bmc-logo-yellow-64.png" /> Support This and Other Free Tools
+If you would like to support my development work to maintain this and other such projects you can do so at https://www.buymeacoffee.com/jlothamer.
 
 
 
