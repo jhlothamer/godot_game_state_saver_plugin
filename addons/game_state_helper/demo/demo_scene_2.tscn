@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://k8otgpme4rrw"]
+[gd_scene load_steps=6 format=3 uid="uid://k8otgpme4rrw"]
 
 [ext_resource type="Script" path="res://addons/game_state_helper/demo/demo_scene_2.gd" id="1_bd0h0"]
 [ext_resource type="Script" path="res://addons/game_state_helper/game_state_helper.gd" id="2_2bfyh"]
+[ext_resource type="PackedScene" uid="uid://cnrvd1hqtdr1e" path="res://addons/game_state_helper/demo/demo_button_bar.tscn" id="3_165wb"]
 
-[sub_resource type="Gradient" id="Gradient_bu2vn"]
+[sub_resource type="Gradient" id="Gradient_fadh4"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_v5tna"]
-gradient = SubResource("Gradient_bu2vn")
+gradient = SubResource("Gradient_fadh4")
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0.00512821)
 
@@ -52,6 +53,10 @@ offset_right = 80.0
 offset_bottom = 224.0
 color = Color(1, 1, 1, 1)
 
+[node name="GameStateHelper" type="Node" parent="Polygon2D1/Polygon1ColorPickerBtn"]
+script = ExtResource("2_2bfyh")
+save_properties = Array[String](["color"])
+
 [node name="GameStateHelper" type="Node" parent="Polygon2D1"]
 script = ExtResource("2_2bfyh")
 save_properties = Array[String](["self_modulate"])
@@ -77,6 +82,11 @@ offset_right = 80.0
 offset_bottom = 224.0
 color = Color(1, 1, 1, 1)
 
+[node name="GameStateHelper" type="Node" parent="Polygon2D2/Polygon2ColorPickerBtn"]
+script = ExtResource("2_2bfyh")
+save_properties = Array[String](["color"])
+global = true
+
 [node name="GameStateHelper" type="Node" parent="Polygon2D2"]
 script = ExtResource("2_2bfyh")
 save_properties = Array[String](["self_modulate"])
@@ -93,7 +103,10 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="TitleLabel" type="Label" parent="TitleMarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleMarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="TitleMarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
@@ -101,38 +114,17 @@ theme_override_font_sizes/font_size = 50
 text = "Demo Scene 2"
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="BlurbLabel" type="Label" parent="TitleMarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "Demo Scenes 1 and 2 show how game object state can be maintained globally."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="DemoButtonBar" parent="." instance=ExtResource("3_165wb")]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -75.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="MainMenuBtn" type="Button" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 34
-text = "MainMenu"
-
-[node name="SpacerControl" type="Control" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ChangeSceneBtn" type="Button" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 34
-text = "Go To Other Scene"
 
 [connection signal="color_changed" from="Polygon2D1/Polygon1ColorPickerBtn" to="." method="_on_polygon_1_color_picker_btn_color_changed"]
 [connection signal="color_changed" from="Polygon2D2/Polygon2ColorPickerBtn" to="." method="_on_polygon_2_color_picker_btn_color_changed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/MainMenuBtn" to="." method="_on_main_menu_btn_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/ChangeSceneBtn" to="." method="_on_change_scene_btn_pressed"]

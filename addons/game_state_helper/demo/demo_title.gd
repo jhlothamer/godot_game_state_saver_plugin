@@ -16,11 +16,12 @@ func _on_new_game_btn_pressed() -> void:
 
 
 func _on_continue_game_btn_pressed() -> void:
-	var scene_file_path := GameStateService.load_game_state(GameStateHelperDemoConsts.SAVE_GAME_FILE)
-	if !scene_file_path:
+	var scene_file := GameStateService.load_game_state(GameStateHelperDemoConsts.SAVE_GAME_FILE)
+	if !scene_file:
+		printerr("Demo: GameStateService.load_game_state() did not return a scene file path.")
 		return
 
-	get_tree().change_scene_to_file(scene_file_path)
+	get_tree().change_scene_to_file(scene_file)
 
 
 func _on_see_save_file_btn_pressed() -> void:

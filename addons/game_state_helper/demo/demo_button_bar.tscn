@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnrvd1hqtdr1e"]
+
+[ext_resource type="Script" path="res://addons/game_state_helper/demo/demo_button_bar.gd" id="1_x02ym"]
+
+[node name="DemoButtonBar" type="MarginContainer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_x02ym")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MainMenuBtn" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "MainMenu"
+
+[node name="SpacerControl" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OtherSceneBtn" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Go To Other Scene"
+
+[node name="SpacerControl3" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DynamicDemoBtn" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Dynamic"
+
+[node name="SpacerControl2" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ReFreeDemoBtn" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Re-Free"
+
+[connection signal="pressed" from="HBoxContainer/MainMenuBtn" to="." method="_on_main_menu_btn_pressed"]
+[connection signal="pressed" from="HBoxContainer/OtherSceneBtn" to="." method="_on_other_scene_btn_pressed"]
+[connection signal="pressed" from="HBoxContainer/DynamicDemoBtn" to="." method="_on_dynamic_demo_btn_pressed"]
+[connection signal="pressed" from="HBoxContainer/ReFreeDemoBtn" to="." method="_on_re_free_demo_btn_pressed"]

@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6md8n1i3jn3i"]
+
+[ext_resource type="Script" path="res://addons/game_state_helper/demo/demo_scene_dynamic.gd" id="1_6tkpp"]
+[ext_resource type="PackedScene" uid="uid://cnrvd1hqtdr1e" path="res://addons/game_state_helper/demo/demo_button_bar.tscn" id="2_b8h85"]
+
+[sub_resource type="Gradient" id="Gradient_oy6i3"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t6lbo"]
+gradient = SubResource("Gradient_oy6i3")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0.0188034)
+
+[node name="DemoSceneDynamic" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6tkpp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 0, 0.340273, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_t6lbo")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="TitleMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 92.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TitleLabel" type="Label" parent="TitleMarginContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 50
+text = "Demo Scene - Dynamic"
+horizontal_alignment = 1
+
+[node name="DynamicChildSceneParent" type="Node2D" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -160.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="BlurbLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 24
+text = "Click the Add and Remove buttons below to add a dynamic instances of a triangle.  It is given a random position, rotation and color.  These triangles will remain until a new game is started."
+autowrap_mode = 2
+
+[node name="AddDynamicInstanceBtn" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Add Dynamic Instance"
+
+[node name="RemoveDynamicInstanceBtn" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Remove Dynamic Instance"
+
+[node name="DemoButtonBar" parent="." instance=ExtResource("2_b8h85")]
+layout_mode = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/AddDynamicInstanceBtn" to="." method="_on_add_dynamic_instance_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/RemoveDynamicInstanceBtn" to="." method="_on_remove_dynamic_instance_btn_pressed"]

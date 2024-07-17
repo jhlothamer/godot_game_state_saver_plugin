@@ -59,7 +59,7 @@ theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 24
 text = "This demo shows very basic use of the GameStateHelper and GameStateService.  For a more complete demo, please clone the full github repo.
 
-The demo consists of two scenes that can be switch between.  You can set colors of polygons in each scene and those color will be maintained between scene switching and even between demo play sessions.  To reset the game state, just choose New Game as apposed to Continue below."
+The demo consists of four scenes that demonstrate 4 key features for maintaining game state.  To reset the game state, just choose New Game.  Otherwise clicking Continue will bring you to the last demo scene visited with game object states restored."
 autowrap_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
