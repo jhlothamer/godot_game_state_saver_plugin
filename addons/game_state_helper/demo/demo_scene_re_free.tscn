@@ -60,7 +60,8 @@ offset_bottom = 224.0
 theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 24
-text = "Click the Remove button and the red X will disappear and wont appear again until a new game is started.  This demonstates how the plugin keeps freed nodes freed."
+text = "Click the Remove button and the red X will disappear and won't appear again until a new game is started.  This demonstates how the plugin keeps freed nodes freed.
+"
 autowrap_mode = 2
 
 [node name="ToBeFreedNode" type="Node2D" parent="."]

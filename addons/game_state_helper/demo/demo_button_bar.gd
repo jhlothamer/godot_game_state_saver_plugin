@@ -12,7 +12,12 @@ func _ready() -> void:
 
 func _switch_scene(scene_file:String) -> void:
 	GameStateService.save_game_state(GameStateHelperDemoConsts.SAVE_GAME_FILE)
-	GameStateService.on_scene_transitioning()
+	## NOTE:
+	## demo is calling save_game_state on every scene switch
+	## which is unusual.  Normally you would only call on_scene_transitioning().
+	## Also note that save_game_state() calls on_scene_transitioning(),
+	## and that calling both functions in your code can cause issues.
+	#GameStateService.on_scene_transitioning()
 	get_tree().change_scene_to_file(scene_file)
 
 
