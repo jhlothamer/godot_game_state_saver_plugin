@@ -17,6 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nvr7f")
+metadata/_edit_vertical_guides_ = [3.0]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(1, 0.905882, 0, 1)
