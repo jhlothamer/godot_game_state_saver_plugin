@@ -15,7 +15,7 @@ The plugin takes care of all of the above, but if you have special state logic y
 This plugin can be installed via the Godot asset library or you can clone (do not download!) the repository and copy the addon folder into your game.
 
 ## Demos
-There are two demos available for the plugin.  A very simple demo is in the addons folder (res://addons/game_state_helper/demo/) so that is is included when installing from the asset library.  A more complete demo is available in the plugin's GitHub repository.  To get this demo please clone (do not download!) the entire GitHub repository and open it's project.
+There are two demos available for the plugin.  A very simple demo is in the addons folder (res://addons/game_state_helper/demo/demo_title.tscn) so that is is included when installing from the asset library.  A more complete demo is available in the plugin's GitHub repository.  To get this demo please clone (do not download!) the entire GitHub repository and open it's project.
 
 ## How to Use
 ### Setting Up Game Objects
