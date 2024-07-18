@@ -1,11 +1,11 @@
 # Godot Game State Plugin
 
-This plugin maintains game object state (property values) between scenes as well as save that state to a file.  It handles the following scenarios for you:
+This plugin maintains game object state (property values) between scenes as well as saves that state to a file.  It handles the following scenarios for you:
 
 1. Re-applying property values to game objects that are always present in the scene.  For example if an object is moved by the player, it's position can be maintained so that it's in the new position when the scene is reloaded.
 2. Re-instance a game object that was dynamically added to the scene.  For example if an enemy drops an item and you want it to stay in the game even when the player leaves the scene, the plugin will re-instance this object.  Of course other properties can be persisted too, like the objects position.
 3. Re-free a game object that was freed from the scene.  For example, a quest item is added to a scene at design time, and so is normally always present.  However, the player can pick up the item, and so we need it to be re-freed every time the player revisits the scene.
-4. Share values between scenes.  This is done with a "global" section of the game state data.  This allows something happening in one scene to affect something else in another.  For example, a switch in once scene can set a global value to true which unlocks a door in another scene.  Inventory items are another global value.  The list of items can be made global so that the inventory system always has the same list in every scene.
+4. Share values between scenes.  This is done with a "global" section of the game state data.  This allows something happening in one scene to affect something else in another.  For example, a switch in once scene can set a global value to true which unlocks a door in another scene.
 
 
 The plugin takes care of all of the above, but if you have special state logic you need to add for a game object, you can hook into the state system by connecting to certain signals (described below).
@@ -15,7 +15,7 @@ The plugin takes care of all of the above, but if you have special state logic y
 This plugin can be installed via the Godot asset library or you can clone (do not download!) the repository and copy the addon folder into your game.
 
 ## Demos
-The plugin comes with a very simple demo in its addon folder, but if you want a more complete demo, please clone (do not download!) the entire GitHub repository for the plugin.
+There are two demos available for the plugin.  A very simple demo is in the addons folder (res://addons/game_state_helper/demo/) so that is is included when installing from the asset library.  A more complete demo is available in the plugin's GitHub repository.  To get this demo please clone (do not download!) the entire GitHub repository and open it's project.
 
 ## How to Use
 ### Setting Up Game Objects
