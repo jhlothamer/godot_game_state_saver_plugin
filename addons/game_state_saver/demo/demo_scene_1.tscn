@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://b2bqq430k4f1s"]
 
-[ext_resource type="Script" path="res://addons/game_state_helper/demo/demo_scene_1.gd" id="1_7pyyc"]
-[ext_resource type="Script" path="res://addons/game_state_helper/game_state_helper.gd" id="1_jwwgd"]
-[ext_resource type="PackedScene" uid="uid://cnrvd1hqtdr1e" path="res://addons/game_state_helper/demo/demo_button_bar.tscn" id="3_7yp7i"]
+[ext_resource type="Script" path="res://addons/game_state_saver/demo/demo_scene_1.gd" id="1_7pyyc"]
+[ext_resource type="Script" path="res://addons/game_state_saver/game_state_helper.gd" id="1_jwwgd"]
+[ext_resource type="PackedScene" uid="uid://cnrvd1hqtdr1e" path="res://addons/game_state_saver/demo/demo_button_bar.tscn" id="3_7yp7i"]
 
 [sub_resource type="Gradient" id="Gradient_vjgfs"]
 
@@ -125,7 +125,7 @@ autowrap_mode = 2
 
 [node name="DemoButtonBar" parent="." instance=ExtResource("3_7yp7i")]
 layout_mode = 1
-other_demo_scene_file_path = "res://addons/game_state_helper/demo/demo_scene_2.tscn"
+other_demo_scene_file_path = "res://addons/game_state_saver/demo/demo_scene_2.tscn"
 other_demo_scene_name = "Demo 2"
 
 [connection signal="color_changed" from="Polygon2D1/Polygon1ColorPickerBtn" to="." method="_on_polygon_1_color_picker_btn_color_changed"]

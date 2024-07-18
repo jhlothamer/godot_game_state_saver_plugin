@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c0x7q3jd5p4bk"]
 
-[ext_resource type="Script" path="res://addons/game_state_helper/demo/demo_title.gd" id="1_nvr7f"]
+[ext_resource type="Script" path="res://addons/game_state_saver/demo/demo_title.gd" id="1_nvr7f"]
 
 [sub_resource type="Gradient" id="Gradient_qi080"]
 
@@ -50,14 +50,14 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 50
-text = "Godot Game State Plugin Demo"
+text = "Game State Saver Mini Demo"
 
 [node name="BlurbLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 24
-text = "This demo shows very basic use of the GameStateHelper and GameStateService.  For a more complete demo, please clone the full github repo.
+text = "This demo shows very basic use of the GameStateHelper and GameStateService.  For a more complete demo, please clone the full GitHub repository.
 
 The demo consists of four scenes that demonstrate 4 key features for maintaining game state.  To reset the game state, just choose New Game.  Otherwise clicking Continue will bring you to the last demo scene visited with game object states restored."
 autowrap_mode = 2

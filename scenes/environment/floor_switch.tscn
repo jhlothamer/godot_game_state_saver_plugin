@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scenes/environment/floor_switch.gd" id="4"]
 [ext_resource type="Texture2D" uid="uid://bob1f380h3f0f" path="res://assets/images/environment/switch_left_interaction_indicator.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://w80r8dsvlnw0" path="res://assets/images/environment/switch_right_interaction_indicator.png" id="6"]
-[ext_resource type="Script" path="res://addons/game_state_helper/game_state_helper.gd" id="7_3c4u6"]
+[ext_resource type="Script" path="res://addons/game_state_saver/game_state_helper.gd" id="7_3c4u6"]
 
 [sub_resource type="SpriteFrames" id="1"]
 animations = [{

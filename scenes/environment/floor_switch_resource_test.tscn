@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://5vinev1klkiy" path="res://assets/images/environment/switch_right.png" id="2_u01sc"]
 [ext_resource type="Script" path="res://scenes/environment/floor_switch_resource_test.gd" id="3_uheic"]
 [ext_resource type="Resource" uid="uid://r53qe8wlfx8" path="res://scenes/environment/floor_switch_resource_test.tres" id="4_jy5kh"]
-[ext_resource type="Script" path="res://addons/game_state_helper/game_state_helper.gd" id="5_ece7x"]
+[ext_resource type="Script" path="res://addons/game_state_saver/game_state_helper.gd" id="5_ece7x"]
 [ext_resource type="Texture2D" uid="uid://bob1f380h3f0f" path="res://assets/images/environment/switch_left_interaction_indicator.png" id="6_7a7cc"]
 [ext_resource type="Texture2D" uid="uid://w80r8dsvlnw0" path="res://assets/images/environment/switch_right_interaction_indicator.png" id="7_jbb0n"]
 [ext_resource type="PackedScene" uid="uid://ssskgu44idw5" path="res://scenes/components/interaction/interactable_area_2d.tscn" id="8_m7kro"]

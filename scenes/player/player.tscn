@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bn0b8uer330a6"]
 
 [ext_resource type="Texture2D" uid="uid://d2bau3xvblstq" path="res://assets/images/player/player_right.png" id="1"]
-[ext_resource type="Script" path="res://addons/game_state_helper/game_state_helper.gd" id="2_5t1kd"]
+[ext_resource type="Script" path="res://addons/game_state_saver/game_state_helper.gd" id="2_5t1kd"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://ww22r51y2fb7" path="res://assets/images/player/player_front.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://dc30mv54inrxa" path="res://assets/images/player/player_left.png" id="5"]

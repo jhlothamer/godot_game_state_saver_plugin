@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://butgob8kmyer8" path="res://assets/themes/dialog_theme.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://b8wm1jy3o7wiq" path="res://assets/images/ui/saving_icon.png" id="2"]
 [ext_resource type="Script" path="res://scenes/environment/checkpoint.gd" id="3"]
-[ext_resource type="Script" path="res://addons/game_state_helper/game_state_helper.gd" id="4"]
+[ext_resource type="Script" path="res://addons/game_state_saver/game_state_helper.gd" id="4"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(64, 64)

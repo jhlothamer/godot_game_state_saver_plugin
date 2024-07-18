@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h2rgp852fdmf"
-path="res://.godot/imported/game_state_helper_setup_example.png-d41c256c11800a1b1ac531fab6545e32.ctex"
+uid="uid://cwm25vfr4mewa"
+path="res://.godot/imported/game_state_helper_global_setup.png-c857ab0bd174f34149657cfadb7c0059.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/game_state_helper/readme_images/game_state_helper_setup_example.png"
-dest_files=["res://.godot/imported/game_state_helper_setup_example.png-d41c256c11800a1b1ac531fab6545e32.ctex"]
+source_file="res://addons/game_state_saver/readme_images/game_state_helper_global_setup.png"
+dest_files=["res://.godot/imported/game_state_helper_global_setup.png-c857ab0bd174f34149657cfadb7c0059.ctex"]
 
 [params]
 

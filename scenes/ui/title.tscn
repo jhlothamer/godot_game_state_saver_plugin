@@ -135,7 +135,7 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 theme_type_variation = &"title"
 theme_override_fonts/font = SubResource("3")
-text = "Game State Helper Demo"
+text = "Game State Saver Demo"
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 0

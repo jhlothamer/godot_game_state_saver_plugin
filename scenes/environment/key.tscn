@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://wyygvehd4vp3" path="res://assets/images/environment/key.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://bjhui0bkvmdd5" path="res://assets/images/environment/key_interaction_indicator.png" id="3"]
 [ext_resource type="Script" path="res://scenes/environment/key.gd" id="4"]
-[ext_resource type="Script" path="res://addons/game_state_helper/game_state_helper.gd" id="5"]
+[ext_resource type="Script" path="res://addons/game_state_saver/game_state_helper.gd" id="5"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(20, 40)

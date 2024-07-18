@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameStateService="*res://addons/game_state_helper/game_state_service.gd"
+GameStateService="*res://addons/game_state_saver/game_state_service.gd"
 TransitionMgr="*res://addons/transition_mgr/transition_mgr.tscn"
 InventoryMgr="*res://utils/inventory_mgr.tscn"
 GameInit="*res://utils/game_init.gd"
@@ -37,7 +37,7 @@ window/size/viewport_height=600
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/game_state_helper/plugin.cfg", "res://addons/transition_mgr/plugin.cfg")
+enabled=PackedStringArray("res://addons/game_state_saver/plugin.cfg", "res://addons/transition_mgr/plugin.cfg")
 
 [filesystem]
 

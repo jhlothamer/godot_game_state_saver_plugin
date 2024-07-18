@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cmjqwiyghbsl0"]
 
-[ext_resource type="Script" path="res://addons/game_state_helper/game_state_helper.gd" id="2_hw6xb"]
+[ext_resource type="Script" path="res://addons/game_state_saver/game_state_helper.gd" id="2_hw6xb"]
 
 [node name="DynamicChildScene" type="Node2D"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c6md8n1i3jn3i"]
 
-[ext_resource type="Script" path="res://addons/game_state_helper/demo/demo_scene_dynamic.gd" id="1_6tkpp"]
-[ext_resource type="PackedScene" uid="uid://cnrvd1hqtdr1e" path="res://addons/game_state_helper/demo/demo_button_bar.tscn" id="2_b8h85"]
+[ext_resource type="Script" path="res://addons/game_state_saver/demo/demo_scene_dynamic.gd" id="1_6tkpp"]
+[ext_resource type="PackedScene" uid="uid://cnrvd1hqtdr1e" path="res://addons/game_state_saver/demo/demo_button_bar.tscn" id="2_b8h85"]
 
 [sub_resource type="Gradient" id="Gradient_oy6i3"]
 

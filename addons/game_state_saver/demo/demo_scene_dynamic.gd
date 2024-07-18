@@ -1,7 +1,7 @@
 extends Control
 
 
-const DYNAMIC_CHILD_SCENE = preload("res://addons/game_state_helper/demo/dynamic_child_scene.tscn")
+const DYNAMIC_CHILD_SCENE = preload("res://addons/game_state_saver/demo/dynamic_child_scene.tscn")
 
 
 @onready var _dynamic_child_scene_parent:Node2D = $DynamicChildSceneParent

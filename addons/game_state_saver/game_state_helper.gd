@@ -1,5 +1,5 @@
 @tool
-@icon("res://addons/game_state_helper/icon_game_state_helper.svg")
+@icon("res://addons/game_state_saver/icon_game_state_helper.svg")
 class_name GameStateHelper
 extends Node
 

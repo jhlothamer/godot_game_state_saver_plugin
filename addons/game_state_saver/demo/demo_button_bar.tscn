@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cnrvd1hqtdr1e"]
 
-[ext_resource type="Script" path="res://addons/game_state_helper/demo/demo_button_bar.gd" id="1_x02ym"]
+[ext_resource type="Script" path="res://addons/game_state_saver/demo/demo_button_bar.gd" id="1_x02ym"]
 
 [node name="DemoButtonBar" type="MarginContainer"]
 anchors_preset = 12

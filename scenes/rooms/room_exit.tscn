@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://blb83yl3fabim" path="res://assets/images/environment/room_exit.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://bxb1cwgwittb3" path="res://assets/images/environment/door.png" id="2"]
 [ext_resource type="Script" path="res://scenes/rooms/room_exit.gd" id="3"]
-[ext_resource type="Script" path="res://addons/game_state_helper/game_state_helper.gd" id="4"]
+[ext_resource type="Script" path="res://addons/game_state_saver/game_state_helper.gd" id="4"]
 [ext_resource type="Script" path="res://scenes/components/interaction/interactable_area_2d.gd" id="5"]
 [ext_resource type="Texture2D" uid="uid://bc8pguj8qgijx" path="res://assets/images/environment/door_interact_indicator.png" id="6"]
 

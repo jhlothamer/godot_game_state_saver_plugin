@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cjm8hq3ip7rh0"]
 
 [ext_resource type="Texture2D" uid="uid://bba3nujc1q4h5" path="res://assets/images/environment/bouncer.png" id="1"]
-[ext_resource type="Script" path="res://addons/game_state_helper/game_state_helper.gd" id="2"]
 [ext_resource type="Script" path="res://scenes/bouncer/bouncer.gd" id="3"]
+[ext_resource type="Script" path="res://addons/game_state_saver/game_state_helper.gd" id="3_nff1k"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(32, 32)
@@ -19,10 +19,10 @@ shape = SubResource("1")
 texture = ExtResource("1")
 
 [node name="GameStateHelper" type="Node" parent="icon"]
-script = ExtResource("2")
+script = ExtResource("3_nff1k")
 save_properties = Array[String](["modulate"])
 
 [node name="GameStateHelper" type="Node" parent="."]
-script = ExtResource("2")
+script = ExtResource("3_nff1k")
 save_properties = Array[String](["global_position", "current_direction"])
 dynamic_instance = true

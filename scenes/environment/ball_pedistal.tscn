@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ba06xrh6oloqy" path="res://assets/images/environment/ball.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://u5rr6bskrvmt" path="res://assets/images/environment/ball_pedistal.png" id="2"]
-[ext_resource type="Script" path="res://addons/game_state_helper/game_state_helper.gd" id="3"]
+[ext_resource type="Script" path="res://addons/game_state_saver/game_state_helper.gd" id="3"]
 [ext_resource type="Script" path="res://scenes/environment/ball_pedistal.gd" id="4"]
 
 [sub_resource type="RectangleShape2D" id="1"]
