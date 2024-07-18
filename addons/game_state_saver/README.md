@@ -93,7 +93,7 @@ For example:
 
 ### GameStateHelper
 
-Node added a a child to scene and used by the GameStateService to load and save game state data.
+Use this node to save property values of it's parent node.
 
 ### Properties
 

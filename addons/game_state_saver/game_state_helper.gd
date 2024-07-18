@@ -2,10 +2,13 @@
 @icon("res://addons/game_state_saver/icon_game_state_helper.svg")
 class_name GameStateHelper
 extends Node
+## Use this node to save property values of it's parent node.
 
-## Signal emitted when data is being loaded.  The data parameter is a Dictionary
-## with the data that was previously saved for the game object. 
+
+## Signal emitted when data is being loaded.  The data dictionary contains
+## data that was previously saved for the game object.
 ## This allows for game objects to have custom loading logic.
+## Note: always check if custom data key is in data dictionary before accessing.
 signal loading_data(data:Dictionary)
 ## Signal emitted when data is being saved.  Data added to the data Dictionary will be saved.
 ## This allows for game objects to have custom saving data.
@@ -41,14 +44,14 @@ class SaveFreedInstancedChildScene:
 		node_data[GAME_STATE_KEY_NODE_PATH] = node_path
 
 
-## list of property names to save
+## A list of parent node property names to save.
 @export var save_properties:Array[String] = []
-## check this property (make true) if the parent is dynamically created during your game
+## Check this property (make true) if the parent is dynamically created during your game.
 @export var dynamic_instance := false: set = _set_dynamic_instance
-## causes the data to be saved/loaded to the global game state dictionary
-## otherwise state is saved/loaded on a per-scene basis
+## Flag indicating if the data is to be saved/loaded to the global game state dictionary (true) or
+## saved/loaded on a per-scene basis.
 @export var global := false: set = _set_global
-## causes a breakpoint to be executed in the GameStateService.  Used for debugging the
+## Causes a breakpoint to be executed in the GameStateService.  Used for debugging the
 ## save_data() and load_data() functions.
 @export var debug := false
 
