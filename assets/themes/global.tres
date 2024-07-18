@@ -12,4 +12,4 @@ RichTextLabel/font_sizes/normal_font_size = 24
 dialog_button/base_type = &"Button"
 dialog_button/font_sizes/font_size = 16
 title/base_type = &"Label"
-title/font_sizes/font_size = 100
+title/font_sizes/font_size = 80
