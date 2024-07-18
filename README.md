@@ -1,4 +1,4 @@
-# Godot Game State Plugin
+# Godot Game State Saver Plugin
 
 This plugin maintains game object state (property values) between scenes as well as saves that state to a file.  It handles the following scenarios for you:
 

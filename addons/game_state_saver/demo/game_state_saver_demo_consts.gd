@@ -1,4 +1,4 @@
-class_name GameStateHelperDemoConsts
+class_name GameStateSaverDemoConsts
 
 const DEMO_SCENE_TITLE = "res://addons/game_state_saver/demo/demo_title.tscn"
 const DEMO_SCENE_1 = "res://addons/game_state_saver/demo/demo_scene_1.tscn"
