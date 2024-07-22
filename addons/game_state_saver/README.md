@@ -1,25 +1,23 @@
 # Godot Game State Saver Plugin
 
-This plugin maintains game object state (property values) between scenes as well as saves that state to a file.  It handles the following scenarios for you:
+This plugin maintains game object state (property values) between scene changes as well as saves that state to a file.  It handles the following scenarios for you:
 
-1. Re-applying property values to game objects that are always present in the scene.  For example if an object is moved by the player, it's position can be maintained so that it's in the new position when the scene is reloaded.
-2. Re-instance a game object that was dynamically added to the scene.  For example if an enemy drops an item and you want it to stay in the game even when the player leaves the scene, the plugin will re-instance this object.  Of course other properties can be persisted too, like the objects position.
-3. Re-free a game object that was freed from the scene.  For example, a quest item is added to a scene at design time, and so is normally always present.  However, the player can pick up the item, and so we need it to be re-freed every time the player revisits the scene.
+1. Re-applying property values to game objects when a scene is reloaded.  For example if an object is moved by the player, its position can be maintained so that it is in the new position when the scene is reloaded.
+2. Re-instance a game object that was dynamically added to the scene.  For example if an enemy drops an item and you want it to stay in the game even when the player leaves the scene, the plugin will re-instance this object when that scene is reloaded.  Of course other properties can be persisted too, like the objects position.
+3. Re-free a game object that was freed from the scene.  For example, a quest item is added to a scene at design time in the Godot editor, and so is normally always present.  However, the player can pick up the item which removes the item from the scene tree at runtime.  This plugin will note the fact the item was freed and re-free it when the scene is reloaded.
 4. Share values between scenes.  This is done with a "global" section of the game state data.  This allows something happening in one scene to affect something else in another.  For example, a switch in once scene can set a global value to true which unlocks a door in another scene.
 
-
 The plugin takes care of all of the above, but if you have special state logic you need to add for a game object, you can hook into the state system by connecting to certain signals (described below).
-
 
 ## Installation
 This plugin can be installed via the Godot asset library or you can clone (do not download!) the repository and copy the addon folder into your game.
 
 ## Demos
-There are two demos available for the plugin.  A very simple demo is in the addons folder (res://addons/game_state_saver/demo/demo_title.tscn) so that is is included when installing from the asset library.  A more complete demo is available in the plugin's GitHub repository.  To get this demo please clone (do not download!) the entire GitHub repository and open it's project.
+There are two demos available for the plugin.  A very simple demo is in the addons folder (res://addons/game_state_saver/demo/demo_title.tscn) so that is is included when installing from the asset library.  A more complete demo is available in the plugin's GitHub repository.  To get this demo please clone (do not download!) the entire GitHub repository and open its project.
 
 ## How to Use
 ### Setting Up Game Objects
-For the game object you wish to save state for, add a GameStateHelper node as a child node.  Then add all of the property names of the properties you want to save.
+For the game object you wish to save state for, add a GameStateHelper node as a child node.  Then add all of the names of the properties you want to save to the Save Properties array.
 
 In the following example, the Player object's global_position and the value of a custom property called facing_direction are saved.
 
@@ -71,7 +69,7 @@ For example:
    	get_tree().change_scene_to_file("res://levels/level1.tscn")
 
 ### Saving Game State to Save Game Files
-The GameStateService only stores game state data in memory till it's save_game_state() function is called.  All you need to do is pass it a file name.
+The GameStateService only stores game state data in memory till its save_game_state() function is called.  All you need to do is pass it a file name.
 
 for example:
 
@@ -80,7 +78,7 @@ for example:
 Along with the saved game file a ".dat" file is created that contains a hash of the save file.  This hash is checked whenever a saved game is loaded.
 
 ### Loading Game State from Save Game Files
-To load a saved game, just call the load_game_state() function of the GameStateService autoload.  You must pass a Callable reference to this function which receives the current scene file path of the saved game.  It is up to you to switch to that scene.  This was done so that you may do some sort of transition effect if you wish to.
+To load a saved game, just call the load_game_state() function of the GameStateService autoload.  If the saved game file is successfully loaded, a path to a scene file is returned, which was the current scene when the save game file was made.
 
 For example:
 
@@ -93,7 +91,7 @@ For example:
 
 ### GameStateHelper
 
-Use this node to save property values of it's parent node.
+Use this node to save property values of its parent node.
 
 ### Properties
 
@@ -123,33 +121,4 @@ The autoload that manages game state.
 
 ## <img src="readme_images/bmc-logo-yellow-64.png" /> Support This and Other Free Tools
 If you would like to support my development work to maintain this and other such projects you can do so at https://www.buymeacoffee.com/jlothamer.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
