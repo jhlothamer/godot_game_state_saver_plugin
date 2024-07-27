@@ -10,7 +10,7 @@ This plugin maintains game object state (property values) between scene changes 
 The plugin takes care of all of the above, but if you have special state logic you need to add for a game object, you can hook into the state system by connecting to certain signals (described below).
 
 ## Installation
-This plugin can be installed via the Godot asset library or you can clone (do not download!) the repository and copy the addon folder into your game.
+This plugin can be installed via the Godot asset library or you can clone or download the repository and copy the addon folder into your game.
 
 ## Demos
 There are two demos available for the plugin.  A very simple demo is in the addons folder (res://addons/game_state_saver/demo/demo_title.tscn) so that is is included when installing from the asset library.  A more complete demo is available in the plugin's GitHub repository.  To get this demo please clone (do not download!) the entire GitHub repository and open its project.
@@ -19,7 +19,7 @@ There are two demos available for the plugin.  A very simple demo is in the addo
 ### Setting Up Game Objects
 For the game object you wish to save state for, add a GameStateHelper node as a child node.  Then add all of the names of the properties you want to save to the Save Properties array.
 
-In the following example, the Player object's global_position and the value of a custom property called facing_direction are saved.
+In the following example, the Player object's global_position and a custom property called facing_direction are saved.
 
 <p align="center">
 <img src="./readme_images/game_state_helper_setup_example.png" />
@@ -57,7 +57,7 @@ For example:
 	get_tree().change_scene_to_file("res://path/to/scene.tscn")
 
 
-### I need Special Logic during Loading/Saving State
+### I need Special Logic During Loading/Saving State
 Not everything can be boiled down to a property value and you may occasionally need to calculate or obtain a value for state with some code.  The GameStateHelper node has two signals that you can use for this called loading_data(data:Dictionary) and saving_data(data:Dictionary).  All you need to do is add entries to the dictionary when saving or access entries when loading in the callback functions connected to these signals.  NOTE: custom data entries may not be present in the dictionary for the loading_data() signal as that signal is emitted before the saving_data() signal.
 
 ### Starting A New Game
