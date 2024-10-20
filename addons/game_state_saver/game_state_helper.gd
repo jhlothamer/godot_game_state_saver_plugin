@@ -46,7 +46,8 @@ class SaveFreedInstancedChildScene:
 
 ## A list of parent node property names to save.
 @export var save_properties:Array[String] = []
-## Check this property (make true) if the parent is dynamically created during your game.
+## Check this property (make true) if the parent is dynamically created during your game and
+## you want Game State Saver to re-instance it when the scene is reloaded.
 @export var dynamic_instance := false: set = _set_dynamic_instance
 ## Flag indicating if the data is to be saved/loaded to the global game state dictionary (true) or
 ## saved/loaded on a per-scene basis.
@@ -97,7 +98,7 @@ func save_data(data: Dictionary) -> void:
 		# add node data to data dictionary
 		data[id] = node_data
 	
-	if !parent.owner and !global and parent != get_tree().current_scene:
+	if dynamic_instance and !parent.owner and !global and parent != get_tree().current_scene:
 		# no owner means the parent was instanced - save the scene file path so it can be re-instanced
 		node_data[GAME_STATE_KEY_INSTANCE_SCENE] = parent.scene_file_path
 		
