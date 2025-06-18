@@ -46,29 +46,20 @@ class SaveFreedInstancedChildScene:
 
 ## A list of parent node property names to save.
 @export var save_properties:Array[String] = []
-## Check this property (make true) if the parent is dynamically created during your game and
-## you want Game State Saver to re-instance it when the scene is reloaded.
-@export var dynamic_instance := false: set = _set_dynamic_instance
 ## Flag indicating if the data is to be saved/loaded to the global game state dictionary (true) or
 ## saved/loaded on a per-scene basis.
-@export var global := false: set = _set_global
+@export var global := false
 ## Causes a breakpoint to be executed in the GameStateService.  Used for debugging the
 ## save_data() and load_data() functions.
 @export var debug := false
 
 
-func _set_dynamic_instance(value: bool) -> void:
-	if global and value:
-		printerr("GameStateHelper:  Dynamic Instance and Global cannot both be true.")
-		return
-	dynamic_instance = value
-
-
-func _set_global(value: bool) -> void:
-	if dynamic_instance and value:
-		printerr("GameStateHelper:  Dynamic Instance and Global cannot both be true.")
-		return
-	global = value
+## Check this property (make true) if the parent is dynamically created during your game and
+## you want Game State Saver to re-instance it when the scene is reloaded.
+## Flag indicating if the parent is dynamically created during your game.  This is determeined
+## automatically by checking if the owner node's parent node is ready at the time this node is
+## added to the tree.
+var _dynamic_instance := false
 
 
 func _enter_tree() -> void:
@@ -84,6 +75,11 @@ func _enter_tree() -> void:
 		}
 		])
 
+	if !Engine.is_editor_hint() and owner:
+		var owner_parent := owner.get_parent()
+		if owner_parent:
+			_dynamic_instance = owner_parent.is_node_ready()
+
 
 ## Saves property values from it's parent to the given data dictionary.  Called from the 
 ## GameStateService.
@@ -98,7 +94,7 @@ func save_data(data: Dictionary) -> void:
 		# add node data to data dictionary
 		data[id] = node_data
 	
-	if dynamic_instance and !parent.owner and !global and parent != get_tree().current_scene:
+	if _dynamic_instance and !parent.owner and !global and parent != get_tree().current_scene:
 		# no owner means the parent was instanced - save the scene file path so it can be re-instanced
 		node_data[GAME_STATE_KEY_INSTANCE_SCENE] = parent.scene_file_path
 		
@@ -158,7 +154,7 @@ static func get_id(node:Node) -> String:
 If parent exits the tree, let manager know so we save this fact in the save file.
 """
 func _exit_tree() -> void:
-	if dynamic_instance:
+	if _dynamic_instance:
 		return
 	var parent := get_parent()
 	var id := GameStateHelper.get_id(parent)

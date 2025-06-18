@@ -25,16 +25,7 @@ In the following example, the Player object's global_position and a custom prope
 <img src="./readme_images/game_state_helper_setup_example.png" />
 </p>
 
-
-If the game object is a dynamically instanced child scene (like a spawned enemy), you will want to check the Dynamic Instance property of the GameStateHelper.
-
-In the following example the Bouncer object is set to Dynamic Instance.  This means that when the scene is reloaded, bouncers will be re-instanced and added back into the scene tree.
-
-<p align="center">
-<img src="./readme_images/game_state_helper_dynamic_setup.png" />
-</p>
-
-Also note that there is a second GameStateHelper in the above example.  This preserves the Icon's modulate as the bouncer is given a random color.  You can have as many GameStateHelper nodes as needed.
+If a game object is a dynamically instanced child scene (like a spawened enemy), the GameStateHelper node will detect this and ensure that it is re-instanced and added back into the scene tree the next time the scene is loaded.
 
 
 If the game state for the object is not specific to a scene and should be the same no matter what scene the object is in, check the Global property of the GameStateHelper.
@@ -96,7 +87,6 @@ Use this node to save property values of its parent node.
 ### Properties
 
 - Save Properties:Array[String] - List of property names of the GameStateHelper's parent node to maintain as game state.
-- Dynamic Instance - Marks scene as dynamic: it will be re-instanced when the scene it was dynamically added to is re-loaded.
 - Global - Saved properties will be stored in a global section of game state as apposed to a section for a specific scene.
 
 ### Signals

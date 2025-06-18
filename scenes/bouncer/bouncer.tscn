@@ -25,4 +25,3 @@ save_properties = Array[String](["modulate"])
 [node name="GameStateHelper" type="Node" parent="."]
 script = ExtResource("3_nff1k")
 save_properties = Array[String](["global_position", "current_direction"])
-dynamic_instance = true
