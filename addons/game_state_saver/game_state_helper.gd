@@ -43,7 +43,9 @@ class SaveFreedInstancedChildScene:
 		node_data[GAME_STATE_KEY_PARENT_FREED] = true
 		node_data[GAME_STATE_KEY_NODE_PATH] = node_path
 
-
+## Used by GameStateInspector to display a dynamic drop down
+@warning_ignore("unused_private_class_variable")
+@export var _add_property_editor : String
 ## A list of parent node property names to save.
 @export var save_properties:Array[String] = []
 ## Flag indicating if the data is to be saved/loaded to the global game state dictionary (true) or
@@ -161,5 +163,3 @@ func _exit_tree() -> void:
 	var save_freed_object := SaveFreedInstancedChildScene.new(id, id)
 	
 	emit_signal("instanced_child_scene_freed", save_freed_object)
-
-
