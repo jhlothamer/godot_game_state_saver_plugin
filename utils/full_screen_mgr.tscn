@@ -1,7 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://pk388lj54bbv"]
+[gd_scene format=3 uid="uid://pk388lj54bbv"]
 
-[ext_resource type="Script" path="res://utils/full_screen_mgr.gd" id="1"]
+[ext_resource type="Script" uid="uid://c4b1q3iodri5u" path="res://utils/full_screen_mgr.gd" id="1"]
 
-[node name="FullScreenMgr" type="Node"]
+[node name="FullScreenMgr" type="Node" unique_id=2094594290]
 process_mode = 2
 script = ExtResource("1")

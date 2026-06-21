@@ -1,64 +1,64 @@
-[gd_scene load_steps=5 format=3 uid="uid://5dhdvcferfvs"]
+[gd_scene format=3 uid="uid://5dhdvcferfvs"]
 
 [ext_resource type="PackedScene" uid="uid://oph56k0gk8qm" path="res://scenes/rooms/room.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://dxia3pe7dsfqk" path="res://scenes/environment/floor_switch.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://scenes/environment/floor_trigger.tscn" id="3"]
-[ext_resource type="Script" path="res://scenes/rooms/room_west.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://chypof5a53chx" path="res://scenes/environment/floor_trigger.tscn" id="3"]
+[ext_resource type="Script" uid="uid://8bcyo0xds0y1" path="res://scenes/rooms/room_west.gd" id="4"]
 
-[node name="RoomWest" instance=ExtResource("1")]
+[node name="RoomWest" unique_id=928012658 instance=ExtResource("1")]
 script = ExtResource("4")
 
-[node name="NorthRoomExit" parent="." index="2"]
+[node name="NorthRoomExit" parent="." index="2" unique_id=117644067]
 visible = false
 collision_layer = 7
 collision_mask = 7
 enabled = false
 
-[node name="room_exit" parent="NorthRoomExit" index="0"]
+[node name="room_exit" parent="NorthRoomExit" index="0" unique_id=1312147803]
 visible = false
 
-[node name="SouthRoomExit" parent="." index="3"]
+[node name="SouthRoomExit" parent="." index="3" unique_id=2096883105]
 visible = false
 collision_layer = 7
 collision_mask = 7
 enabled = false
 
-[node name="room_exit" parent="SouthRoomExit" index="0"]
+[node name="room_exit" parent="SouthRoomExit" index="0" unique_id=1312147803]
 visible = false
 
-[node name="EastRoomExit" parent="." index="4"]
+[node name="EastRoomExit" parent="." index="4" unique_id=1167027655]
 destination_level_scene = "res://scenes/rooms/room_main.tscn"
 
-[node name="WestRoomExit" parent="." index="5"]
+[node name="WestRoomExit" parent="." index="5" unique_id=1854948174]
 visible = false
 collision_layer = 7
 collision_mask = 7
 enabled = false
 
-[node name="room_exit" parent="WestRoomExit" index="0"]
+[node name="room_exit" parent="WestRoomExit" index="0" unique_id=1312147803]
 visible = false
 
-[node name="Info" parent="Node2D" index="0"]
+[node name="Info" parent="Node2D" parent_id_path=PackedInt32Array(528881996) index="0" unique_id=916279554]
 position = Vector2(833.389, 188.261)
 bb_code_info_msg = "This room demonstrates that dynamically instanced scenes (the bouncers) will be persisted into the game state and re-instanced when this scene is loaded again.  Use the green floor button to add bouncers and the red button to remove them.  The floor switch at the far end of the room also affects something in the main room."
 
-[node name="FloorSwitch" parent="Node2D" index="2" instance=ExtResource("2")]
+[node name="FloorSwitch" parent="Node2D" parent_id_path=PackedInt32Array(528881996) index="2" unique_id=1065265016 instance=ExtResource("2")]
 position = Vector2(275.642, 394)
 trigger_id = "west_trigger"
 
-[node name="AddBouncerFloorTrigger" parent="Node2D" index="3" instance=ExtResource("3")]
+[node name="AddBouncerFloorTrigger" parent="Node2D" parent_id_path=PackedInt32Array(528881996) index="3" unique_id=485837724 instance=ExtResource("3")]
 modulate = Color(0.0431373, 0.666667, 0, 1)
 position = Vector2(809.389, 394)
 
-[node name="RemoveBouncerFloorTrigger" parent="Node2D" index="4" instance=ExtResource("3")]
+[node name="RemoveBouncerFloorTrigger" parent="Node2D" parent_id_path=PackedInt32Array(528881996) index="4" unique_id=1729329712 instance=ExtResource("3")]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(717.415, 394)
 
-[node name="Bouncers" type="Node2D" parent="Node2D" index="5"]
+[node name="Bouncers" type="Node2D" parent="Node2D" parent_id_path=PackedInt32Array(528881996) index="5" unique_id=833873541]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="8"]
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="8" unique_id=1860150525]
 
-[node name="SpawnMarginContainer" type="MarginContainer" parent="CanvasLayer" index="0"]
+[node name="SpawnMarginContainer" type="MarginContainer" parent="CanvasLayer" index="0" unique_id=1346344241]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -68,7 +68,7 @@ theme_override_constants/margin_top = 160
 theme_override_constants/margin_right = 160
 theme_override_constants/margin_bottom = 160
 
-[node name="SpawnAreaReferenceRect" type="ReferenceRect" parent="CanvasLayer/SpawnMarginContainer" index="0"]
+[node name="SpawnAreaReferenceRect" type="ReferenceRect" parent="CanvasLayer/SpawnMarginContainer" index="0" unique_id=2131329633]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

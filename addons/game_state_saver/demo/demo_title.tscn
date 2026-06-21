@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0x7q3jd5p4bk"]
+[gd_scene format=3 uid="uid://c0x7q3jd5p4bk"]
 
-[ext_resource type="Script" path="res://addons/game_state_saver/demo/demo_title.gd" id="1_nvr7f"]
+[ext_resource type="Script" uid="uid://cj5yurkhadqtx" path="res://addons/game_state_saver/demo/demo_title.gd" id="1_nvr7f"]
 
 [sub_resource type="Gradient" id="Gradient_qi080"]
 
@@ -9,7 +9,7 @@ gradient = SubResource("Gradient_qi080")
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0.00512821)
 
-[node name="demo_title" type="Control"]
+[node name="demo_title" type="Control" unique_id=1856156870]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,7 +19,7 @@ grow_vertical = 2
 script = ExtResource("1_nvr7f")
 metadata/_edit_vertical_guides_ = [3.0]
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=93967549]
 modulate = Color(1, 0.905882, 0, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -31,7 +31,7 @@ texture = SubResource("GradientTexture2D_8ov7m")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1439244463]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,17 +43,17 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=220720732]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1935442945]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 50
 text = "Game State Saver Mini Demo"
 
-[node name="BlurbLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="BlurbLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1344953139]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
 theme_override_constants/outline_size = 2
@@ -63,41 +63,41 @@ text = "This demo shows very basic use of the GameStateHelper and GameStateServi
 The demo consists of four scenes that demonstrate 4 key features for maintaining game state.  To reset the game state, just choose New Game.  Otherwise clicking Continue will bring you to the last demo scene visited with game object states restored."
 autowrap_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer" unique_id=687006912]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer" unique_id=578202423]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer" unique_id=1368461577]
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="NewGameBtn" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="NewGameBtn" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1319697869]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "New Game"
 
-[node name="ContinueGameBtn" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="ContinueGameBtn" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1693771614]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Continue"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer" unique_id=1272924625]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="SeeSaveFileBtn" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="SeeSaveFileBtn" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=9356026]
 layout_mode = 2
 tooltip_text = "Open File Explorer to where save file is located"
 theme_override_font_sizes/font_size = 34
 text = "See Save File"
 
-[node name="ExitBtn" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2"]
+[node name="ExitBtn" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/HBoxContainer2" unique_id=1635246982]
 layout_mode = 2
 theme_override_font_sizes/font_size = 34
 text = "Exit"

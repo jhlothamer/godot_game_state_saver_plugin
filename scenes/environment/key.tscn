@@ -1,31 +1,31 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkxarq4817du8"]
+[gd_scene format=3 uid="uid://dkxarq4817du8"]
 
-[ext_resource type="Script" path="res://scenes/components/interaction/interactable_area_2d.gd" id="1"]
+[ext_resource type="Script" uid="uid://dveqmbvupog8h" path="res://scenes/components/interaction/interactable_area_2d.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://wyygvehd4vp3" path="res://assets/images/environment/key.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://bjhui0bkvmdd5" path="res://assets/images/environment/key_interaction_indicator.png" id="3"]
-[ext_resource type="Script" path="res://scenes/environment/key.gd" id="4"]
-[ext_resource type="Script" path="res://addons/game_state_saver/game_state_helper.gd" id="5"]
+[ext_resource type="Script" uid="uid://da2n1pp66c3yw" path="res://scenes/environment/key.gd" id="4"]
+[ext_resource type="Script" uid="uid://cp56nbifw50kl" path="res://addons/game_state_saver/game_state_helper.gd" id="5"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(20, 40)
 
-[node name="Key" type="Sprite2D"]
+[node name="Key" type="Sprite2D" unique_id=1543174857]
 texture = ExtResource("2")
 script = ExtResource("4")
 
-[node name="key_interaction_indicator" type="Sprite2D" parent="."]
+[node name="key_interaction_indicator" type="Sprite2D" parent="." unique_id=1292504591]
 visible = false
 show_behind_parent = true
 texture = ExtResource("3")
 
-[node name="InteractableArea2D" type="Area2D" parent="."]
+[node name="InteractableArea2D" type="Area2D" parent="." unique_id=1330840504]
 visible = false
 script = ExtResource("1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea2D" unique_id=772744679]
 shape = SubResource("1")
 
-[node name="GameStateHelper" type="Node" parent="."]
+[node name="GameStateHelper" type="Node" parent="." unique_id=162378373]
 script = ExtResource("5")
 save_properties = Array[String](["global_position"])
 

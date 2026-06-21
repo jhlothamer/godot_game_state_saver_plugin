@@ -1,16 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dp8vtge0lck8p"]
+[gd_scene format=3 uid="uid://dp8vtge0lck8p"]
 
 [ext_resource type="Theme" uid="uid://butgob8kmyer8" path="res://assets/themes/dialog_theme.tres" id="1"]
-[ext_resource type="Script" path="res://scenes/ui/load_game_dlg.gd" id="2"]
+[ext_resource type="Script" uid="uid://duim4ljsedexi" path="res://scenes/ui/load_game_dlg.gd" id="2"]
 
-[node name="LoadGameDlg" type="ConfirmationDialog"]
+[node name="LoadGameDlg" type="ConfirmationDialog" unique_id=56661280]
 title = "Load Game"
 position = Vector2i(60, 60)
 size = Vector2i(800, 400)
 theme = ExtResource("1")
 script = ExtResource("2")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=742150554]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,15 +23,15 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 40
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1659988699]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ItemList" type="ItemList" parent="MarginContainer/HBoxContainer"]
+[node name="ItemList" type="ItemList" parent="MarginContainer/HBoxContainer" unique_id=1321800013]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=806182913]
 layout_mode = 2
 size_flags_horizontal = 3
 stretch_mode = 5

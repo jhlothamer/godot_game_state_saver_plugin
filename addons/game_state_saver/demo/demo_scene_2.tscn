@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://k8otgpme4rrw"]
+[gd_scene format=3 uid="uid://k8otgpme4rrw"]
 
-[ext_resource type="Script" path="res://addons/game_state_saver/demo/demo_scene_2.gd" id="1_bd0h0"]
-[ext_resource type="Script" path="res://addons/game_state_saver/game_state_helper.gd" id="2_2bfyh"]
+[ext_resource type="Script" uid="uid://b1v8cog231ga" path="res://addons/game_state_saver/demo/demo_scene_2.gd" id="1_bd0h0"]
+[ext_resource type="Script" uid="uid://cp56nbifw50kl" path="res://addons/game_state_saver/game_state_helper.gd" id="2_2bfyh"]
 [ext_resource type="PackedScene" uid="uid://cnrvd1hqtdr1e" path="res://addons/game_state_saver/demo/demo_button_bar.tscn" id="3_165wb"]
 
 [sub_resource type="Gradient" id="Gradient_fadh4"]
@@ -11,7 +11,7 @@ gradient = SubResource("Gradient_fadh4")
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0.00512821)
 
-[node name="demo_scene_2" type="Control"]
+[node name="demo_scene_2" type="Control" unique_id=782946653]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bd0h0")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1822621900]
 modulate = Color(0.658824, 0, 1, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -32,11 +32,11 @@ texture = SubResource("GradientTexture2D_v5tna")
 metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
-[node name="Polygon2D1" type="Polygon2D" parent="."]
+[node name="Polygon2D1" type="Polygon2D" parent="." unique_id=1209377763]
 position = Vector2(288, 240)
 polygon = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
 
-[node name="Label" type="Label" parent="Polygon2D1"]
+[node name="Label" type="Label" parent="Polygon2D1" unique_id=1706979283]
 offset_left = -232.0
 offset_top = 80.0
 offset_right = 234.0
@@ -46,26 +46,26 @@ text = "My Color is specific to this scene
 Set color below"
 horizontal_alignment = 1
 
-[node name="Polygon1ColorPickerBtn" type="ColorPickerButton" parent="Polygon2D1"]
+[node name="Polygon1ColorPickerBtn" type="ColorPickerButton" parent="Polygon2D1" unique_id=102110221]
 offset_left = -64.0
 offset_top = 184.0
 offset_right = 80.0
 offset_bottom = 224.0
 color = Color(1, 1, 1, 1)
 
-[node name="GameStateHelper" type="Node" parent="Polygon2D1/Polygon1ColorPickerBtn"]
+[node name="GameStateHelper" type="Node" parent="Polygon2D1/Polygon1ColorPickerBtn" unique_id=802396713]
 script = ExtResource("2_2bfyh")
 save_properties = Array[String](["color"])
 
-[node name="GameStateHelper" type="Node" parent="Polygon2D1"]
+[node name="GameStateHelper" type="Node" parent="Polygon2D1" unique_id=1795921445]
 script = ExtResource("2_2bfyh")
 save_properties = Array[String](["self_modulate"])
 
-[node name="Polygon2D2" type="Polygon2D" parent="."]
+[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=201511213]
 position = Vector2(736, 240)
 polygon = PackedVector2Array(-64, -64, -64, 64, 64, 64, 64, -64)
 
-[node name="Label" type="Label" parent="Polygon2D2"]
+[node name="Label" type="Label" parent="Polygon2D2" unique_id=1865399018]
 offset_left = -232.0
 offset_top = 80.0
 offset_right = 234.0
@@ -75,24 +75,24 @@ text = "My Color is is global.
 Set color below"
 horizontal_alignment = 1
 
-[node name="Polygon2ColorPickerBtn" type="ColorPickerButton" parent="Polygon2D2"]
+[node name="Polygon2ColorPickerBtn" type="ColorPickerButton" parent="Polygon2D2" unique_id=1510324956]
 offset_left = -64.0
 offset_top = 184.0
 offset_right = 80.0
 offset_bottom = 224.0
 color = Color(1, 1, 1, 1)
 
-[node name="GameStateHelper" type="Node" parent="Polygon2D2/Polygon2ColorPickerBtn"]
+[node name="GameStateHelper" type="Node" parent="Polygon2D2/Polygon2ColorPickerBtn" unique_id=291944330]
 script = ExtResource("2_2bfyh")
 save_properties = Array[String](["color"])
 global = true
 
-[node name="GameStateHelper" type="Node" parent="Polygon2D2"]
+[node name="GameStateHelper" type="Node" parent="Polygon2D2" unique_id=945851956]
 script = ExtResource("2_2bfyh")
 save_properties = Array[String](["self_modulate"])
 global = true
 
-[node name="TitleMarginContainer" type="MarginContainer" parent="."]
+[node name="TitleMarginContainer" type="MarginContainer" parent="." unique_id=770043492]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -103,10 +103,10 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleMarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleMarginContainer" unique_id=1394819009]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="TitleMarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="TitleMarginContainer/VBoxContainer" unique_id=200435730]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
@@ -114,7 +114,7 @@ theme_override_font_sizes/font_size = 50
 text = "Demo Scene 2"
 horizontal_alignment = 1
 
-[node name="BlurbLabel" type="Label" parent="TitleMarginContainer/VBoxContainer"]
+[node name="BlurbLabel" type="Label" parent="TitleMarginContainer/VBoxContainer" unique_id=2043869656]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
 theme_override_constants/outline_size = 2
@@ -123,9 +123,8 @@ text = "Demo Scenes 1 and 2 show how game object state can be maintained globall
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="DemoButtonBar" parent="." instance=ExtResource("3_165wb")]
+[node name="DemoButtonBar" parent="." unique_id=347621055 instance=ExtResource("3_165wb")]
 layout_mode = 1
-other_demo_scene_file_path = "res://addons/game_state_saver/demo/demo_scene_1.tscn"
 
 [connection signal="color_changed" from="Polygon2D1/Polygon1ColorPickerBtn" to="." method="_on_polygon_1_color_picker_btn_color_changed"]
 [connection signal="color_changed" from="Polygon2D2/Polygon2ColorPickerBtn" to="." method="_on_polygon_2_color_picker_btn_color_changed"]

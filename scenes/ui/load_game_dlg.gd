@@ -60,4 +60,3 @@ func _on_LoadGameDlg_confirmed() -> void:
 		if !scene_file:
 			return
 		TransitionMgr.transition_to(scene_file)
-

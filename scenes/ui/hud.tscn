@@ -1,7 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://bdql8d4bdoouq"]
+[gd_scene format=3 uid="uid://bdql8d4bdoouq"]
 
 [ext_resource type="PackedScene" uid="uid://beiy6vqvh6lu7" path="res://scenes/ui/info_dialog.tscn" id="1"]
-[ext_resource type="Script" path="res://scenes/ui/hud.gd" id="2"]
+[ext_resource type="Script" uid="uid://dadqq6sly05oi" path="res://scenes/ui/hud.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://bswgagaqfkxrf" path="res://scenes/ui/pause_dialog.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://scenes/ui/inventory.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://3rf7lin42cle" path="res://scenes/ui/raw_game_state_dlg.tscn" id="5"]
@@ -11,6 +11,15 @@
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("6")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -82,14 +91,14 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mqp6m"]
 _data = {
-"RESET": SubResource("2"),
-"disk_exit": SubResource("3")
+&"RESET": SubResource("2"),
+&"disk_exit": SubResource("3")
 }
 
-[node name="Hud" type="CanvasLayer"]
+[node name="Hud" type="CanvasLayer" unique_id=2086432871]
 script = ExtResource("2")
 
-[node name="InventoryMarginContainer" type="MarginContainer" parent="."]
+[node name="InventoryMarginContainer" type="MarginContainer" parent="." unique_id=773035372]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -100,14 +109,14 @@ offset_top = -60.0
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Inventory" parent="InventoryMarginContainer" instance=ExtResource("4")]
+[node name="Inventory" parent="InventoryMarginContainer" unique_id=612134005 instance=ExtResource("4")]
 layout_mode = 2
 
-[node name="InfoDialog" parent="." instance=ExtResource("1")]
+[node name="InfoDialog" parent="." unique_id=846014871 instance=ExtResource("1")]
 
-[node name="RawGameStateDlg" parent="." instance=ExtResource("5")]
+[node name="RawGameStateDlg" parent="." unique_id=1958456292 instance=ExtResource("5")]
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1321249635]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -116,13 +125,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5_5b82o")
 
-[node name="PauseDialog" parent="Control" instance=ExtResource("3")]
+[node name="PauseDialog" parent="Control" unique_id=1732624559 instance=ExtResource("3")]
 visible = false
 layout_mode = 1
 
-[node name="RawGameStateDlg" parent="Control" instance=ExtResource("5")]
+[node name="RawGameStateDlg" parent="Control" unique_id=1114019274 instance=ExtResource("5")]
 
-[node name="DebugMarginContainer" type="MarginContainer" parent="."]
+[node name="DebugMarginContainer" type="MarginContainer" parent="." unique_id=962305688]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -135,15 +144,15 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DebugMarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugMarginContainer" unique_id=1296239511]
 layout_mode = 2
 
-[node name="ViewGameStateBtn" type="Button" parent="DebugMarginContainer/VBoxContainer"]
+[node name="ViewGameStateBtn" type="Button" parent="DebugMarginContainer/VBoxContainer" unique_id=711213668]
 layout_mode = 2
 focus_mode = 0
 text = "View Game State"
 
-[node name="MessageLabel" type="Label" parent="."]
+[node name="MessageLabel" type="Label" parent="." unique_id=1383346679]
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
@@ -157,11 +166,11 @@ theme_override_constants/shadow_offset_y = 3
 theme_override_fonts/font = SubResource("1")
 horizontal_alignment = 1
 
-[node name="MessageTimer" type="Timer" parent="."]
+[node name="MessageTimer" type="Timer" parent="." unique_id=1238774190]
 wait_time = 5.0
 one_shot = true
 
-[node name="AutoSaveMarginContainer" type="MarginContainer" parent="."]
+[node name="AutoSaveMarginContainer" type="MarginContainer" parent="." unique_id=837764942]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -173,15 +182,13 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="AutoSaveTextureRect" type="TextureRect" parent="AutoSaveMarginContainer"]
+[node name="AutoSaveTextureRect" type="TextureRect" parent="AutoSaveMarginContainer" unique_id=254406028]
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("7")
 
-[node name="AutoSaveAnimationPlayer" type="AnimationPlayer" parent="AutoSaveMarginContainer"]
-libraries = {
-"": SubResource("AnimationLibrary_mqp6m")
-}
+[node name="AutoSaveAnimationPlayer" type="AnimationPlayer" parent="AutoSaveMarginContainer" unique_id=1312324195]
+libraries/ = SubResource("AnimationLibrary_mqp6m")
 
 [connection signal="pressed" from="DebugMarginContainer/VBoxContainer/ViewGameStateBtn" to="." method="_on_ViewGameStateBtn_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_MessageTimer_timeout"]

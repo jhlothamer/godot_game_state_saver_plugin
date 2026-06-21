@@ -386,4 +386,3 @@ func _save_save_file_hash(file_path: String) -> void:
 		return
 	f.store_string(content_hash)
 	f.close()
-

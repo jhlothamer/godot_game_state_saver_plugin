@@ -1,4 +1,4 @@
-# Godot Game State Saver Plugin
+# Godot Game State Saver Plugin for Godot 4.7+
 
 This plugin maintains game object state (property values) between scene changes as well as saves that state to a file.  It handles the following scenarios for you:
 
@@ -64,7 +64,7 @@ The GameStateService only stores game state data in memory till its save_game_st
 
 for example:
 
-    GameStateService.save_game_state("user://saved_gamed/save_game1.json")
+	GameStateService.save_game_state("user://saved_gamed/save_game1.json")
 
 Along with the saved game file a ".dat" file is created that contains a hash of the save file.  This hash is checked whenever a saved game is loaded.
 
@@ -73,10 +73,10 @@ To load a saved game, just call the load_game_state() function of the GameStateS
 
 For example:
 
-    var scene_file_path := GameStateService.load_game_state("user://saved_gamed/save_game1.json")
-    if !scene_file_path: # nothing returned on error - check output
-        return
-    get_tree().change_scene_to_file(scene_file_path)
+	var scene_file_path := GameStateService.load_game_state("user://saved_gamed/save_game1.json")
+	if !scene_file_path: # nothing returned on error - check output
+		return
+	get_tree().change_scene_to_file(scene_file_path)
 
 ## Reference
 
@@ -111,4 +111,3 @@ The autoload that manages game state.
 
 ## <img src="readme_images/bmc-logo-yellow-64.png" /> Support This and Other Free Tools
 If you would like to support my development work to maintain this and other such projects you can do so at https://www.buymeacoffee.com/jlothamer.
-

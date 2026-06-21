@@ -1,24 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://dj5qovg3gpsq6"]
+[gd_scene format=3 uid="uid://dj5qovg3gpsq6"]
 
 [ext_resource type="Theme" uid="uid://butgob8kmyer8" path="res://assets/themes/dialog_theme.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://b8wm1jy3o7wiq" path="res://assets/images/ui/saving_icon.png" id="2"]
-[ext_resource type="Script" path="res://scenes/environment/checkpoint.gd" id="3"]
-[ext_resource type="Script" path="res://addons/game_state_saver/game_state_helper.gd" id="4"]
+[ext_resource type="Script" uid="uid://4vpxy6nx8xcu" path="res://scenes/environment/checkpoint.gd" id="3"]
+[ext_resource type="Script" uid="uid://cp56nbifw50kl" path="res://addons/game_state_saver/game_state_helper.gd" id="4"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(64, 64)
 
-[node name="Checkpoint" type="Area2D"]
+[node name="Checkpoint" type="Area2D" unique_id=999991600]
 script = ExtResource("3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=991993125]
 shape = SubResource("1")
 
-[node name="SavingIcon" type="Sprite2D" parent="."]
+[node name="SavingIcon" type="Sprite2D" parent="." unique_id=1045495532]
 modulate = Color(0.364706, 0.478431, 0.94902, 1)
 texture = ExtResource("2")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=844020586]
 offset_left = -41.0
 offset_top = -8.0
 offset_right = 41.0
@@ -27,7 +27,7 @@ theme = ExtResource("1")
 theme_override_colors/font_color = Color(0.0705882, 0, 1, 1)
 text = "Checkpoint"
 
-[node name="GameStateHelper" type="Node" parent="."]
+[node name="GameStateHelper" type="Node" parent="." unique_id=1569861053]
 script = ExtResource("4")
 save_properties = Array[String](["triggered"])
 

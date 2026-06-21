@@ -1,29 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://coukma0hbqk0v"]
+[gd_scene format=3 uid="uid://coukma0hbqk0v"]
 
 [ext_resource type="Texture2D" uid="uid://ba06xrh6oloqy" path="res://assets/images/environment/ball.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://u5rr6bskrvmt" path="res://assets/images/environment/ball_pedistal.png" id="2"]
-[ext_resource type="Script" path="res://addons/game_state_saver/game_state_helper.gd" id="3"]
-[ext_resource type="Script" path="res://scenes/environment/ball_pedistal.gd" id="4"]
+[ext_resource type="Script" uid="uid://cp56nbifw50kl" path="res://addons/game_state_saver/game_state_helper.gd" id="3"]
+[ext_resource type="Script" uid="uid://mtfmjerqv3je" path="res://scenes/environment/ball_pedistal.gd" id="4"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(70, 70)
 
-[node name="BallPedistal" type="StaticBody2D"]
+[node name="BallPedistal" type="StaticBody2D" unique_id=74625644]
 script = ExtResource("4")
 triggered_color = Color(0, 0.576471, 1, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=258913729]
 shape = SubResource("1")
 
-[node name="ball_pedistal" type="Sprite2D" parent="."]
+[node name="ball_pedistal" type="Sprite2D" parent="." unique_id=308234868]
 texture = ExtResource("2")
 
-[node name="ball" type="Sprite2D" parent="."]
+[node name="ball" type="Sprite2D" parent="." unique_id=784187690]
 self_modulate = Color(0, 0.0470588, 0.262745, 1)
 position = Vector2(0, -11)
 texture = ExtResource("1")
 
-[node name="GameStateHelper" type="Node" parent="."]
+[node name="GameStateHelper" type="Node" parent="." unique_id=1594312309]
 script = ExtResource("3")
 global = true
 

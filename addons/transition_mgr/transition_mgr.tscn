@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbtucwcrm3ai2"]
+[gd_scene format=3 uid="uid://bbtucwcrm3ai2"]
 
-[ext_resource type="Script" path="res://addons/transition_mgr/transition_mgr.gd" id="1_3w3bw"]
+[ext_resource type="Script" uid="uid://b1yhxcomlryf8" path="res://addons/transition_mgr/transition_mgr.gd" id="1_3w3bw"]
 
 [sub_resource type="Animation" id="Animation_ywbuj"]
 length = 0.001
@@ -49,23 +49,21 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w12t0"]
 _data = {
-"RESET": SubResource("Animation_ywbuj"),
-"fadeIn": SubResource("Animation_fkof3"),
-"fadeOut": SubResource("Animation_w7d3q")
+&"RESET": SubResource("Animation_ywbuj"),
+&"fadeIn": SubResource("Animation_fkof3"),
+&"fadeOut": SubResource("Animation_w7d3q")
 }
 
-[node name="transition_mgr" type="CanvasLayer"]
+[node name="transition_mgr" type="CanvasLayer" unique_id=1556965741]
 process_mode = 3
 script = ExtResource("1_3w3bw")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=983344712]
 custom_minimum_size = Vector2(3840, 2160)
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="fadeAnimation" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_w12t0")
-}
+[node name="fadeAnimation" type="AnimationPlayer" parent="." unique_id=2110381940]
+libraries/ = SubResource("AnimationLibrary_w12t0")
 
 [connection signal="animation_finished" from="fadeAnimation" to="." method="_on_fade_animation_animation_finished"]

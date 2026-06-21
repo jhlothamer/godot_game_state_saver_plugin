@@ -1,13 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmjqwiyghbsl0"]
+[gd_scene format=3 uid="uid://cmjqwiyghbsl0"]
 
-[ext_resource type="Script" path="res://addons/game_state_saver/game_state_helper.gd" id="2_hw6xb"]
+[ext_resource type="Script" uid="uid://cp56nbifw50kl" path="res://addons/game_state_saver/game_state_helper.gd" id="2_hw6xb"]
 
-[node name="DynamicChildScene" type="Node2D"]
+[node name="DynamicChildScene" type="Node2D" unique_id=43428339]
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=415041212]
 polygon = PackedVector2Array(0, -64, -64, 64, 64, 64)
 
-[node name="GameStateHelper" type="Node" parent="."]
+[node name="GameStateHelper" type="Node" parent="." unique_id=1795517307]
 script = ExtResource("2_hw6xb")
 save_properties = Array[String](["global_position", "global_rotation", "modulate"])
-dynamic_instance = true

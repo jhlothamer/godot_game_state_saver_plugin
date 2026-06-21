@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnrvd1hqtdr1e"]
+[gd_scene format=3 uid="uid://cnrvd1hqtdr1e"]
 
-[ext_resource type="Script" path="res://addons/game_state_saver/demo/demo_button_bar.gd" id="1_x02ym"]
+[ext_resource type="Script" uid="uid://bxx35tkvpd3te" path="res://addons/game_state_saver/demo/demo_button_bar.gd" id="1_x02ym"]
 
-[node name="DemoButtonBar" type="MarginContainer"]
+[node name="DemoButtonBar" type="MarginContainer" unique_id=135296377]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -12,38 +12,38 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_x02ym")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=304325537]
 layout_mode = 2
 
-[node name="MainMenuBtn" type="Button" parent="HBoxContainer"]
+[node name="MainMenuBtn" type="Button" parent="HBoxContainer" unique_id=803819381]
 layout_mode = 2
 theme_override_font_sizes/font_size = 34
 text = "MainMenu"
 
-[node name="SpacerControl" type="Control" parent="HBoxContainer"]
+[node name="SpacerControl" type="Control" parent="HBoxContainer" unique_id=1503576724]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="OtherSceneBtn" type="Button" parent="HBoxContainer"]
+[node name="OtherSceneBtn" type="Button" parent="HBoxContainer" unique_id=1673049273]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 34
 text = "Go To Other Scene"
 
-[node name="SpacerControl3" type="Control" parent="HBoxContainer"]
+[node name="SpacerControl3" type="Control" parent="HBoxContainer" unique_id=1016651534]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DynamicDemoBtn" type="Button" parent="HBoxContainer"]
+[node name="DynamicDemoBtn" type="Button" parent="HBoxContainer" unique_id=310038953]
 layout_mode = 2
 theme_override_font_sizes/font_size = 34
 text = "Dynamic"
 
-[node name="SpacerControl2" type="Control" parent="HBoxContainer"]
+[node name="SpacerControl2" type="Control" parent="HBoxContainer" unique_id=609349803]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ReFreeDemoBtn" type="Button" parent="HBoxContainer"]
+[node name="ReFreeDemoBtn" type="Button" parent="HBoxContainer" unique_id=1376427698]
 layout_mode = 2
 theme_override_font_sizes/font_size = 34
 text = "Re-Free"

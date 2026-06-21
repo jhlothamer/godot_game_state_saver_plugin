@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1dowke5fsdap"]
+[gd_scene format=3 uid="uid://d1dowke5fsdap"]
 
 [ext_resource type="FontFile" uid="uid://dej7qb7q5bxg5" path="res://assets/fonts/CooperHewitt-Medium.otf" id="1"]
 [ext_resource type="Theme" uid="uid://0h6us4pe5qfi" path="res://assets/themes/global.tres" id="1_cv88s"]
-[ext_resource type="Script" path="res://scenes/ui/title.gd" id="2"]
+[ext_resource type="Script" uid="uid://be8mvb2srelw4" path="res://scenes/ui/title.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://dp8vtge0lck8p" path="res://scenes/ui/load_game_dlg.tscn" id="3"]
 
 [sub_resource type="Gradient" id="1"]
@@ -17,6 +17,15 @@ fill_to = Vector2(0, 1)
 
 [sub_resource type="FontFile" id="3"]
 fallbacks = Array[Font]([ExtResource("1")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -70,6 +79,15 @@ cache/0/80/0/kerning_overrides/80/0 = Vector2(0, 0)
 
 [sub_resource type="FontFile" id="4"]
 fallbacks = Array[Font]([ExtResource("1")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -87,6 +105,15 @@ cache/0/40/0/kerning_overrides/40/0 = Vector2(0, 0)
 
 [sub_resource type="FontFile" id="5"]
 fallbacks = Array[Font]([ExtResource("1")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -102,7 +129,7 @@ cache/0/48/0/scale = 1.0
 cache/0/48/0/kerning_overrides/16/0 = Vector2(0, 0)
 cache/0/48/0/kerning_overrides/48/0 = Vector2(0, 0)
 
-[node name="Title" type="Control"]
+[node name="Title" type="Control" unique_id=1644104537]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -112,7 +139,7 @@ grow_vertical = 2
 theme = ExtResource("1_cv88s")
 script = ExtResource("2")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1889666652]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -122,7 +149,7 @@ grow_vertical = 2
 texture = SubResource("2")
 stretch_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1755750529]
 layout_mode = 0
 offset_right = 695.0
 offset_bottom = 112.0
@@ -131,13 +158,13 @@ theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Label" type="Label" parent="MarginContainer"]
+[node name="Label" type="Label" parent="MarginContainer" unique_id=446159315]
 layout_mode = 2
 theme_type_variation = &"title"
 theme_override_fonts/font = SubResource("3")
 text = "Game State Saver Demo"
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1039409125]
 layout_mode = 0
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -148,7 +175,8 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Label" type="Label" parent="MarginContainer2"]
+[node name="Label" type="Label" parent="MarginContainer2" unique_id=1153810283]
+custom_minimum_size = Vector2(500, 300)
 layout_mode = 2
 theme_override_fonts/font = SubResource("4")
 text = "This is a demonstration of saving game state in several situations.  These include:
@@ -158,7 +186,7 @@ text = "This is a demonstration of saving game state in several situations.  The
 - the usual save/load from file"
 autowrap_mode = 2
 
-[node name="MarginContainer3" type="MarginContainer" parent="."]
+[node name="MarginContainer3" type="MarginContainer" parent="." unique_id=1661200390]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -174,11 +202,11 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer3" unique_id=922880363]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="NewGameBtn" type="Button" parent="MarginContainer3/VBoxContainer"]
+[node name="NewGameBtn" type="Button" parent="MarginContainer3/VBoxContainer" unique_id=2097118878]
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_pressed_color = Color(0.921569, 0, 1, 1)
@@ -188,7 +216,7 @@ theme_override_fonts/font = SubResource("5")
 text = "New Game"
 flat = true
 
-[node name="LoadGameBtn" type="Button" parent="MarginContainer3/VBoxContainer"]
+[node name="LoadGameBtn" type="Button" parent="MarginContainer3/VBoxContainer" unique_id=1910204141]
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_pressed_color = Color(0.921569, 0, 1, 1)
@@ -198,7 +226,7 @@ theme_override_fonts/font = SubResource("5")
 text = "Load Game"
 flat = true
 
-[node name="ExitBtn" type="Button" parent="MarginContainer3/VBoxContainer"]
+[node name="ExitBtn" type="Button" parent="MarginContainer3/VBoxContainer" unique_id=2083130363]
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_pressed_color = Color(0.921569, 0, 1, 1)
@@ -208,7 +236,7 @@ theme_override_fonts/font = SubResource("5")
 text = "Exit"
 flat = true
 
-[node name="LoadGameDlg" parent="." instance=ExtResource("3")]
+[node name="LoadGameDlg" parent="." unique_id=2137562395 instance=ExtResource("3")]
 
 [connection signal="pressed" from="MarginContainer3/VBoxContainer/NewGameBtn" to="." method="_on_NewGameBtn_pressed"]
 [connection signal="pressed" from="MarginContainer3/VBoxContainer/LoadGameBtn" to="." method="_on_LoadGameBtn_pressed"]
