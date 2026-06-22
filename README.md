@@ -10,7 +10,7 @@ This plugin maintains game object state (property values) between scene changes 
 The plugin takes care of all of the above, but if you have special state logic you need to add for a game object, you can hook into the state system by connecting to certain signals (described below).
 
 ## Installation
-This plugin can be installed via the Godot asset library or you can clone or download the repository and copy the addon folder into your game.
+This plugin can be installed via the Godot asset store or you can clone or download the repository and copy the addon folder into your game.
 
 ## Demos
 There are two demos available for the plugin.  A very simple demo is in the addons folder (res://addons/game_state_saver/demo/demo_title.tscn) so that is is included when installing from the asset library.  A more complete demo is available in the plugin's GitHub repository.  To get this demo please clone (do not download!) the entire GitHub repository and open its project.
@@ -23,6 +23,12 @@ In the following example, the Player object's global_position and a custom prope
 
 <p align="center">
 <img src="./readme_images/game_state_helper_setup_example.png" />
+</p>
+
+You can also click the Add Save Property button and select properties from the popup list.
+
+<p align="center">
+<img src="./readme_images/game_state_helper_property_list_popup.png" />
 </p>
 
 If a game object is a dynamically instanced child scene (like a spawened enemy), the GameStateHelper node will detect this and ensure that it is re-instanced and added back into the scene tree the next time the scene is loaded.
